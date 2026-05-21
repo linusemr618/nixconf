@@ -2,6 +2,7 @@
   flake.nixosModules.core = {
     config,
     lib,
+    #pkgs,
     ...
   }: {
     imports = [inputs.nix-index-database.nixosModules.default];
@@ -25,11 +26,11 @@
         ];
         substituters = [
           "https://nix-community.cachix.org"
-          "https://noctalia.cachix.org"
+          #"https://noctalia.cachix.org"
         ];
         trusted-public-keys = [
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+          #"noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
         ];
         trusted-users = ["root" "@wheel"];
         warn-dirty = false;
@@ -41,7 +42,10 @@
       #nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
     };
 
-    programs.nix-ld.enable = true;
+    programs.nix-ld = {
+      enable = true;
+      #libraries = with pkgs; [libsecret];
+    };
 
     programs.nix-index-database.comma.enable = true;
     environment.sessionVariables = {COMMA_CACHING = 0;};
