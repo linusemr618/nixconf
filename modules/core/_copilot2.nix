@@ -25,6 +25,7 @@
         (oldAttrs.buildInputs or [])
         ++ pkgs.lib.optionals pkgs.stdenv.hostPlatform.isLinux [
           pkgs.libsecret
+          pkgs.glib
         ];
 
       # Ensure autoPatchelfHook actually links keytar.node against libsecret

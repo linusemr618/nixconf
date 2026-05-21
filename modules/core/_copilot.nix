@@ -4,10 +4,7 @@
   ...
 }: {
   flake.homeModules.core = {pkgs, ...}: {
-    programs.github-copilot-cli = {
-      enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.myCopilot;
-    };
+    home.packages = [self.packages.${pkgs.stdenv.hostPlatform.system}.myCopilot];
   };
   perSystem = {
     pkgs,
@@ -25,7 +22,7 @@
       ...
     }:
       buildFHSEnv {
-        name = "github-copilot-cli";
+        name = "copilot";
 
         targetPkgs = pkgs:
           with pkgs; [
@@ -36,11 +33,6 @@
             # glib is absolutely required here because libsecret depends on it and keyring support is broken without it
             # Even though I find it strange that it doesn't get pulled automatically and has to be specified manually
             glib
-            glibc
-            gcc
-            libgcc
-            openssl
-            seahorse
           ];
 
         # Dynamically points to the main executable of the GitHub Copilot CLI package

@@ -2,7 +2,7 @@
   flake.nixosModules.core = {
     config,
     lib,
-    #pkgs,
+    pkgs,
     ...
   }: {
     imports = [inputs.nix-index-database.nixosModules.default];
@@ -44,7 +44,10 @@
 
     programs.nix-ld = {
       enable = true;
-      #libraries = with pkgs; [libsecret];
+      libraries = with pkgs; [
+        libsecret
+        glib
+      ];
     };
 
     programs.nix-index-database.comma.enable = true;
@@ -58,6 +61,12 @@
         dates = "daily";
       };
       flake = "${config.flake.location}";
+    };
+  };
+
+  flake.homeModules.core = {
+    home.sessionVariables = {
+      LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
     };
   };
 }
