@@ -23,3 +23,4 @@ My personal NixOS configuration
 - [ ] impermanence
 - [ ] maybe element desktop
 - [ ] tmux (mouse support & continuum)
+- [ ] maybe remove unnecessary fish plugins
