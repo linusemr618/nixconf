@@ -66,7 +66,7 @@
 
   flake.homeModules.core = {
     home.sessionVariables = {
-      LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
+      LD_LIBRARY_PATH = "\${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$NIX_LD_LIBRARY_PATH";
     };
   };
 }

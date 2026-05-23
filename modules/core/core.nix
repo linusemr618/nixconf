@@ -4,7 +4,6 @@
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = true;
       kernelPackages = pkgs.linuxPackages_latest;
-      initrd.systemd.enable = true;
     };
 
     services.fwupd.enable = true;
