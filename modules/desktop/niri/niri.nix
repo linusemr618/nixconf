@@ -23,7 +23,8 @@
       polkit.enable = true;
     };
     services = {
-      greetd = {
+      /*
+        greetd = {
         enable = true;
         settings = {
           default_session = {
@@ -32,6 +33,9 @@
           };
         };
       };
+      */
+      #displayManager.gdm.enable = true;
+      gnome.gnome-keyring.enable = true;
       power-profiles-daemon.enable = true;
       upower.enable = true;
     };
@@ -40,7 +44,6 @@
       enable = true;
       extraPortals = with pkgs; [xdg-desktop-portal-gtk xdg-desktop-portal-gnome];
     };
-    services.gnome.gnome-keyring.enable = true;
   };
 
   flake.homeModules.desktopNiri = {pkgs, ...}: {

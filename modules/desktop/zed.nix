@@ -1,4 +1,11 @@
 {
+  flake.nixosModules.desktop = {pkgs, ...}: {
+    programs.nix-ld.libraries = with pkgs; [
+      libsecret
+      glib
+    ];
+  };
+
   flake.homeModules.desktop = {pkgs, ...}: {
     programs.zed-editor = {
       enable = true;
@@ -29,7 +36,6 @@
           arguments = ["--quiet" "--"];
         };
         load_direnv = "shell_hook";
-        #project_pane.dock = "right";
         telemetry = {
           diagnostics = false;
           metrics = false;

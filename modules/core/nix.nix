@@ -2,7 +2,6 @@
   flake.nixosModules.core = {
     config,
     lib,
-    pkgs,
     ...
   }: {
     imports = [inputs.nix-index-database.nixosModules.default];
@@ -42,13 +41,7 @@
       #nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
     };
 
-    programs.nix-ld = {
-      enable = true;
-      libraries = with pkgs; [
-        libsecret
-        glib
-      ];
-    };
+    programs.nix-ld.enable = true;
 
     programs.nix-index-database.comma.enable = true;
     environment.sessionVariables = {COMMA_CACHING = 0;};
@@ -58,15 +51,9 @@
       clean = {
         enable = true;
         extraArgs = "--keep 5";
-        dates = "daily";
+        dates = "hourly";
       };
       flake = "${config.flake.location}";
-    };
-  };
-
-  flake.homeModules.core = {
-    home.sessionVariables = {
-      LD_LIBRARY_PATH = "\${LD_LIBRARY_PATH:+$LD_LIBRARY_PATH:}$NIX_LD_LIBRARY_PATH";
     };
   };
 }

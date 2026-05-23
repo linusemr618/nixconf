@@ -59,7 +59,7 @@
         nc = "nh clean all";
         run = "NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#$argv[1] -- $argv[2..-1]";
         shell = "NIXPKGS_ALLOW_UNFREE=1 nix shell --impure (string replace -r '^' 'nixpkgs#' $argv) -c fish";
-        update = "nfu && nhs";
+        update = "nu && nos";
       };
     };
 

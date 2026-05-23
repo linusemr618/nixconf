@@ -13,14 +13,14 @@ My personal NixOS configuration
 - [x] Restructure graphics and enable 32bit
 - [x] check for default gnome options (see niri-flake)
 - [x] research firmware options
+- [x] tmux (mouse support & continuum)
+- [x] maybe remove unnecessary fish plugins
+- [x] geary
 - [ ] sops-nix
   - [x] seahorse integration
   - [ ] wifi passwords
   - [ ] kde connect
   - [ ] backup solution
-- [ ] geary
 - [ ] disko
 - [ ] impermanence
 - [ ] maybe element desktop
-- [ ] tmux (mouse support & continuum)
-- [ ] maybe remove unnecessary fish plugins
