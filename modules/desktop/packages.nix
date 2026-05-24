@@ -9,6 +9,7 @@
     home.packages = with pkgs; [
       dconf-editor
       fractal
+      geary
       gnome-boxes
       gnome-tweaks
       jetbrains.pycharm

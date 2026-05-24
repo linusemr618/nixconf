@@ -1,5 +1,9 @@
 {
-  flake.homeModules.desktopGnome = {lib, ...}:
+  flake.homeModules.desktopGnome = {
+    config,
+    lib,
+    ...
+  }:
     with lib.hm.gvariant; {
       dconf.settings = {
         "org/gnome/desktop/calendar".show-weekdate = true;
@@ -45,26 +49,57 @@
           resources-memory-in-iec = true;
         };
       };
-      xdg.configFile."goa-1.0/accounts.conf".text = ''
-        [Account account_1779291630_0]
-        Provider=owncloud
-        Identity=linusemmerich
-        PresentationIdentity=linusemmerich@nextcloud.kaffeekanne.xyz
-        Uri=https://nextcloud.kaffeekanne.xyz:443/remote.php/webdav/
-        FilesEnabled=true
-        CalendarEnabled=true
-        CalDavUri=https://nextcloud.kaffeekanne.xyz:443/remote.php/dav/
-        ContactsEnabled=true
-        CardDavUri=https://nextcloud.kaffeekanne.xyz:443/remote.php/dav/
-        AcceptSslErrors=false
 
-        [Account account_1779555501_0]
-        Provider=google
-        Identity=REDACTED_GMAIL
-        PresentationIdentity=REDACTED_GMAIL
-        MailEnabled=true
-        CalendarEnabled=true
-        ContactsEnabled=true
-      '';
+      sops = {
+        secrets = {
+          "desktop/gnome/gmail_mail" = {};
+          "desktop/gnome/rwth_login" = {};
+          "desktop/gnome/rwth_mail" = {};
+        };
+        templates."accounts.conf".content = ''
+          [Account account_1779291630_0]
+          Provider=owncloud
+          Identity=linusemmerich
+          PresentationIdentity=linusemmerich@nextcloud.kaffeekanne.xyz
+          Uri=https://nextcloud.kaffeekanne.xyz:443/remote.php/webdav/
+          FilesEnabled=true
+          CalendarEnabled=true
+          CalDavUri=https://nextcloud.kaffeekanne.xyz:443/remote.php/dav/
+          ContactsEnabled=true
+          CardDavUri=https://nextcloud.kaffeekanne.xyz:443/remote.php/dav/
+          AcceptSslErrors=false
+
+          [Account account_1779555501_0]
+          Provider=google
+          Identity=${config.sops.placeholder."desktop/gnome/gmail_mail"}
+          PresentationIdentity=${config.sops.placeholder."desktop/gnome/gmail_mail"}
+          MailEnabled=true
+          CalendarEnabled=true
+          ContactsEnabled=true
+
+          [Account account_1779632516_0]
+          Provider=imap_smtp
+          Identity=${config.sops.placeholder."desktop/gnome/rwth_mail"}
+          PresentationIdentity=${config.sops.placeholder."desktop/gnome/rwth_mail"}
+          Enabled=true
+          EmailAddress=${config.sops.placeholder."desktop/gnome/rwth_mail"}
+          Name=Linus Emmerich
+          ImapHost=mail.rwth-aachen.de
+          ImapUserName=${config.sops.placeholder."desktop/gnome/rwth_login"}
+          ImapUseSsl=true
+          ImapUseTls=false
+          ImapAcceptSslErrors=false
+          SmtpHost=mail.rwth-aachen.de
+          SmtpUseAuth=true
+          SmtpUserName=${config.sops.placeholder."desktop/gnome/rwth_login"}
+          SmtpAuthLogin=true
+          SmtpAuthPlain=false
+          SmtpUseSsl=false
+          SmtpUseTls=true
+          SmtpAcceptSslErrors=false
+        '';
+      };
+
+      xdg.configFile."goa-1.0/accounts.conf".source = config.lib.file.mkOutOfStoreSymlink config.sops.templates."accounts.conf".path;
     };
 }
