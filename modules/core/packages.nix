@@ -2,8 +2,6 @@
   flake.nixosModules.core = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       aircrack-ng
-
-      #(ffmpeg-full.override {withUnfree = true;})
     ];
   };
 

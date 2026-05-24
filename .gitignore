@@ -6,5 +6,5 @@ result-*
 .direnv
 
 #temp
-modules/desktop/gnome/settings.nix
-modules/desktop/geary.nix
+#modules/desktop/gnome/settings.nix
+#modules/desktop/geary.nix

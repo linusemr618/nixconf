@@ -16,7 +16,7 @@ My personal NixOS configuration
 - [x] tmux (mouse support & continuum)
 - [x] maybe remove unnecessary fish plugins
 - [x] geary
-- [ ] sops-nix
+- [x] sops-nix
   - [x] seahorse integration
   - [ ] wifi passwords
   - [ ] kde connect
