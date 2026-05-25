@@ -22,9 +22,7 @@
         autosave = "on_focus_change";
         base_keymap = "VSCode";
         buffer_font_size = 15;
-        edit_predictions = {
-          provider = "copilot";
-        };
+        edit_predictions.provider = "copilot";
         hour_format = "hour24";
         icon_theme = {
           mode = "system";

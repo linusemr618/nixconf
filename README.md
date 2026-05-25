@@ -19,7 +19,7 @@ My personal NixOS configuration
 - [x] sops-nix
 - [x] seahorse integration
 - [x] wifi passwords
-- [ ] vpn
+- [x] vpn
 - [ ] kde connect
 - [ ] backup solution
 - [ ] disko
