@@ -33,7 +33,7 @@
     fileSystems."/swap" = {
       device = "/dev/mapper/luks-790845fb-5510-436c-9e2b-3abff24f506a";
       fsType = "btrfs";
-      options = ["subvol=@swap" "compress=zstd" "noatime"];
+      options = ["subvol=@swap" "noatime"];
     };
 
     fileSystems."/boot" = {
