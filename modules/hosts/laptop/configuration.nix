@@ -6,6 +6,9 @@
   flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       self.nixosModules.hostsLaptop
+      inputs.nixos-hardware.nixosModules.common-pc-laptop
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
+      inputs.nixos-hardware.nixosModules.common-cpu-intel
 
       self.nixosModules.core
       self.nixosModules.desktop
@@ -20,17 +23,18 @@
       })
     ];
   };
-  flake.nixosModules.hostsLaptop = {pkgs, ...}: {
+  flake.nixosModules.hostsLaptop = {
     networking.hostName = "laptop";
-
-    hardware.graphics = {
-      extraPackages = with pkgs; [
-        intel-media-driver
-        vpl-gpu-rt
-        intel-compute-runtime
-      ];
+    boot = {
+      resumeDevice = "/dev/mapper/luks-790845fb-5510-436c-9e2b-3abff24f506a";
+      kernelParams = ["resume_offset=11168313"];
+      zswap.enable = true;
     };
-    environment.sessionVariables = {LIBVA_DRIVER_NAME = "iHD";};
-    boot.kernelParams = ["i915.enable_guc=3"];
+    swapDevices = [
+      {
+        device = "/swap/swapfile";
+        size = 24 * 1024;
+      }
+    ];
   };
 }
