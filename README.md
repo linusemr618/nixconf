@@ -17,10 +17,11 @@ My personal NixOS configuration
 - [x] maybe remove unnecessary fish plugins
 - [x] geary
 - [x] sops-nix
-  - [x] seahorse integration
-  - [ ] wifi passwords
-  - [ ] kde connect
-  - [ ] backup solution
+- [x] seahorse integration
+- [x] wifi passwords
+- [ ] vpn
+- [ ] kde connect
+- [ ] backup solution
 - [ ] disko
 - [ ] impermanence
 - [ ] maybe element desktop

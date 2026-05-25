@@ -1,13 +1,13 @@
-let
-  package = "vscode";
-  #autostartEntry = "code.desktop";
-in {
+{
   #inputs, ...}: {
   flake.nixosModules.desktop = {
     #nixpkgs.overlays = [inputs.nix4vscode.overlays.default];
   };
 
-  flake.homeModules.desktop = {pkgs, ...}: {
+  flake.homeModules.desktop = {pkgs, ...}: let
+    package = "vscode";
+    #autostartEntry = "code.desktop";
+  in {
     programs.${package} = {
       enable = true;
       profiles.default = {

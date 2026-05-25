@@ -3,6 +3,18 @@
     environment.systemPackages = with pkgs; [
       aircrack-ng
     ];
+
+    # programs.appimage = {
+    #   enable = true;
+    #   binfmt = true;
+    #   package = pkgs.appimage-run.override {
+    #     extraPkgs = with pkgs;
+    #       pkgs: [
+    #         libxshmfence
+    #       ];
+    #   };
+    # };
+    # services.flatpak.enable = true;
   };
 
   flake.homeModules.core = {pkgs, ...}: {

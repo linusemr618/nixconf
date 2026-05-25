@@ -1,9 +1,5 @@
 {
-  flake.nixosModules.desktopNiri = {
-    config,
-    pkgs,
-    ...
-  }: {
+  flake.nixosModules.desktopNiri = {pkgs, ...}: {
     programs = {
       niri = {
         enable = true;

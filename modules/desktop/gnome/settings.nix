@@ -52,9 +52,9 @@
 
       sops = {
         secrets = {
-          "desktop/gnome/gmail_mail" = {};
-          "desktop/gnome/rwth_login" = {};
-          "desktop/gnome/rwth_mail" = {};
+          "gnome-settings/gmail-mail" = {};
+          "gnome-settings/rwth-login" = {};
+          "gnome-settings/rwth-mail" = {};
         };
         templates."accounts.conf".content = ''
           [Account account_1779291630_0]
@@ -71,27 +71,27 @@
 
           [Account account_1779555501_0]
           Provider=google
-          Identity=${config.sops.placeholder."desktop/gnome/gmail_mail"}
-          PresentationIdentity=${config.sops.placeholder."desktop/gnome/gmail_mail"}
+          Identity=${config.sops.placeholder."gnome-settings/gmail-mail"}
+          PresentationIdentity=${config.sops.placeholder."gnome-settings/gmail-mail"}
           MailEnabled=true
           CalendarEnabled=true
           ContactsEnabled=true
 
           [Account account_1779632516_0]
           Provider=imap_smtp
-          Identity=${config.sops.placeholder."desktop/gnome/rwth_mail"}
-          PresentationIdentity=${config.sops.placeholder."desktop/gnome/rwth_mail"}
+          Identity=${config.sops.placeholder."gnome-settings/rwth-mail"}
+          PresentationIdentity=${config.sops.placeholder."gnome-settings/rwth-mail"}
           Enabled=true
-          EmailAddress=${config.sops.placeholder."desktop/gnome/rwth_mail"}
+          EmailAddress=${config.sops.placeholder."gnome-settings/rwth-mail"}
           Name=Linus Emmerich
           ImapHost=mail.rwth-aachen.de
-          ImapUserName=${config.sops.placeholder."desktop/gnome/rwth_login"}
+          ImapUserName=${config.sops.placeholder."gnome-settings/rwth-login"}
           ImapUseSsl=true
           ImapUseTls=false
           ImapAcceptSslErrors=false
           SmtpHost=mail.rwth-aachen.de
           SmtpUseAuth=true
-          SmtpUserName=${config.sops.placeholder."desktop/gnome/rwth_login"}
+          SmtpUserName=${config.sops.placeholder."gnome-settings/rwth-login"}
           SmtpAuthLogin=true
           SmtpAuthPlain=false
           SmtpUseSsl=false
