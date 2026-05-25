@@ -5,24 +5,28 @@
     pkgs,
     ...
   }: let
-    wifiNetworks = [
-      "ELI"
-      "Kaffeekanne"
-      "GRUENE"
-      "Vodafone-2085"
-      "WLAN-770356_EXT2.4G"
-      "VDSt-WLAN"
-      "AP23-Main"
-    ];
-    mkWifiProfile = ssid: {
+    wifiNetworks = {
+      "AP23_Main" = ["AP23-Main" "sae"];
+      "ELI" = ["ELI" "sae"];
+      "GRUENE" = ["GRUENE" "sae"];
+      "Kaffeekanne" = ["Kaffeekanne" "sae"];
+      "Pixel_8_Pro" = ["Pixel 8 Pro" "sae"];
+      "VDSt_WLAN" = ["VDSt-WLAN" "sae"];
+      "Vodafone_2085" = ["Vodafone-2085" "sae"];
+      "WLAN_770356_EXT2_4G" = ["WLAN-770356_EXT2.4G" "sae"];
+    };
+    mkWifiProfile = id: values: let
+      ssid = builtins.elemAt values 0;
+      keyMgmt = builtins.elemAt values 1;
+    in {
       connection = {
-        id = ssid;
+        id = id;
         type = "wifi";
       };
       wifi.ssid = ssid;
       wifi-security = {
-        key-mgmt = "sae";
-        psk = "$WIFI_PSK_${ssid}";
+        key-mgmt = keyMgmt;
+        psk = "$WIFI_PSK_${id}";
       };
     };
   in {
@@ -36,7 +40,7 @@
         ensureProfiles = {
           environmentFiles = [config.sops.secrets."networking/env".path];
           profiles =
-            lib.genAttrs wifiNetworks mkWifiProfile
+            lib.mapAttrs mkWifiProfile wifiNetworks
             // {
               "Kaffeekanne_P" = {
                 connection = {
@@ -46,7 +50,7 @@
                 };
                 wifi.ssid = "Kaffeekanne";
                 wifi-security = {
-                  key-mgmt = "sae";
+                  key-mgmt = "wpa-psk";
                   psk = "$WIFI_PSK_Kaffeekanne_P";
                 };
               };

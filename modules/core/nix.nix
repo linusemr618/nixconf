@@ -50,7 +50,7 @@
       enable = true;
       clean = {
         enable = true;
-        extraArgs = "--keep 5";
+        extraArgs = "--keep-since 3d --keep 10";
         dates = "hourly";
       };
       flake = "${config.flake.location}";
