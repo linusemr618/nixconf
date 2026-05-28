@@ -1,17 +1,15 @@
 {
-  flake.homeModules.desktopGnome = {pkgs, ...}: let
-    extensions = with pkgs.gnomeExtensions; [
-      appindicator
-      #blur-my-shell
-      caffeine
-      clipboard-indicator
-      #dash-to-dock
-      forge
-      gsconnect
-      paperwm
+  flake.homeModules.desktopGnome = {pkgs, ...}: {
+    programs.gnome-shell.extensions = map (i: {package = pkgs.gnomeExtensions.${i};}) [
+      "appindicator"
+      #"blur-my-shell"
+      "caffeine"
+      "clipboard-indicator"
+      #"dash-to-dock"
+      #"forge"
+      "gsconnect"
+      #"paperwm"
     ];
-  in {
-    programs.gnome-shell.extensions = map (i: {package = i;}) extensions;
 
     dconf.settings = {
       "org/gnome/shell/extensions/appindicator" = {
@@ -31,6 +29,23 @@
         show-notifications = false;
         toggle-shortcut = ["<Super>c"];
       };
+    };
+  };
+
+  flake.nixosModules.desktopGnome = {
+    networking.firewall = {
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
     };
   };
 }

@@ -51,7 +51,7 @@
           profiles =
             lib.mapAttrs mkWifiProfile wifiNetworks
             // {
-              "Kaffeekanne_P" = {
+              Kaffeekanne_P = {
                 connection = {
                   id = "Kaffeekanne_P";
                   type = "wifi";
@@ -68,7 +68,8 @@
                   method = "auto";
                 };
               };
-              "eduroam" = {
+
+              eduroam = {
                 connection = {
                   id = "eduroam";
                   type = "wifi";
@@ -92,40 +93,74 @@
                   method = "auto";
                 };
               };
-              "wg_Kaffeekanne" = {
+
+              WG_Kaffeekanne = {
                 connection = {
-                  id = "wg_Kaffeekanne";
+                  id = "WG_Kaffeekanne";
                   type = "wireguard";
-                  interface-name = "wg_Kaffeekanne";
                   autoconnect = false;
+                  interface-name = "WG_Kaffeekanne";
                   permissions = "user:${config.user.name}:;";
                 };
                 wireguard = {
                   listen-port = 51820;
-                  private-key = "$VPN_wg_Kaffeekanne_PRIVATE_KEY";
+                  private-key = "$VPN_WG_Kaffeekanne_PRIVATE_KEY";
                 };
                 "wireguard-peer.JW/FlZp2O05ragkAoFD/h6TXaw8h1hFhSI0USUEWSkQ=" = {
-                  endpoint = "$VPN_wg_Kaffeekanne_ENDPOINT";
+                  endpoint = "$VPN_WG_Kaffeekanne_ENDPOINT";
                   persistent-keepalive = 25;
                   allowed-ips = "192.168.69.0/24;0.0.0.0/0;fd9c:b5fd:70cf::/64;::/0;";
-                  preshared-key = "$VPN_wg_Kaffeekanne_PRESHARED_KEY";
+                  preshared-key = "$VPN_WG_Kaffeekanne_PRESHARED_KEY";
                   preshared-key-flags = 0;
                 };
                 ipv4 = {
-                  method = "manual";
                   address1 = "192.168.69.201/24";
                   dns = "192.168.69.1;";
                   dns-search = "fritz.box;";
+                  method = "manual";
                 };
                 ipv6 = {
-                  method = "manual";
                   addr-gen-mode = "default";
                   address1 = "fd9c:b5fd:70cf::201/64";
                   dns = "fd9c:b5fd:70cf:0:d624:ddff:fe55:6a8c;";
                   dns-search = "fritz.box;";
+                  method = "manual";
                 };
               };
-              "RWTH" = {
+
+              DE_348 = {
+                connection = {
+                  id = "DE_348";
+                  type = "wireguard";
+                  autoconnect = "false";
+                  interface-name = "DE_348";
+                  permissions = "user:${config.user.name}:;";
+                };
+                wireguard = {
+                  listen-port = 51820;
+                  private-key = "$VPN_DE_348_PRIVATE_KEY";
+                };
+                "wireguard-peer.hOoBBy//7mddXPz1SybzWB3zK95SQCcPyI/DmxfULXk=" = {
+                  endpoint = "149.88.102.97:51820";
+                  persistent-keepalive = 25;
+                  allowed-ips = "0.0.0.0/0;::/0;";
+                };
+                ipv4 = {
+                  address1 = "10.2.0.2/32";
+                  dns = "10.2.0.1;";
+                  dns-search = "~;";
+                  method = "manual";
+                };
+                ipv6 = {
+                  addr-gen-mode = "default";
+                  address1 = "2a07:b944::2:2/128";
+                  dns = "2a07:b944::2:1;";
+                  dns-search = "~;";
+                  method = "manual";
+                };
+              };
+
+              RWTH = {
                 connection = {
                   id = "RWTH";
                   type = "vpn";

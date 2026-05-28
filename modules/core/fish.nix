@@ -22,36 +22,19 @@
       interactiveShellInit = ''
         set -g fish_greeting # Disable greeting
       '';
-      plugins = with pkgs.fishPlugins; [
-        {
-          name = "fzf-fish";
-          src = fzf-fish.src;
-        }
-        {
-          name = "forgit";
-          src = forgit.src;
-        }
-        {
-          name = "done";
-          src = done.src;
-        }
-        {
-          name = "hydro";
-          src = hydro.src;
-        }
-        {
-          name = "grc";
-          src = grc.src;
-        }
-        {
-          name = "colored-man-pages";
-          src = colored-man-pages.src;
-        }
-        {
-          name = "z";
-          src = z.src;
-        }
-      ];
+      plugins =
+        map (plugin: {
+          name = plugin;
+          src = pkgs.fishPlugins.${plugin}.src;
+        }) [
+          "fzf-fish"
+          "forgit"
+          "done"
+          "hydro"
+          "grc"
+          "colored-man-pages"
+          "z"
+        ];
       functions = {
         gu = "git pull && git add . && git commit -m \"update $(date -u --iso-8601=seconds)\" && git push";
         nu = "nix flake update --flake ${config.flake.location}";
