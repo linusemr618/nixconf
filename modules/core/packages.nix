@@ -19,12 +19,14 @@
 
   flake.homeModules.core = {pkgs, ...}: {
     home.packages = with pkgs; [
+      alejandra
       android-tools
       devenv
       gcc
-      gdb
       git
       neovim
+      nil
+      nixd
       wget
 
       (python3.withPackages (ps: [ps.tkinter]))

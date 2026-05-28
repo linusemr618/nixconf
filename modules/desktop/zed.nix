@@ -10,19 +10,17 @@
     programs.zed-editor = {
       enable = true;
       extensions = ["nix"];
-      extraPackages = with pkgs; [
-        alejandra
-        nil
-        nixd
-      ];
       defaultEditor = true;
       #mutableUserSettings = false;
       userSettings = {
+        agent_panel.dock = "right";
         auto_install_extensions.nix = true;
         autosave = "on_focus_change";
         base_keymap = "VSCode";
         buffer_font_size = 15;
+        collaboration_panel.dock = "left";
         edit_predictions.provider = "copilot";
+        git_panel.dock = "left";
         hour_format = "hour24";
         icon_theme = {
           mode = "system";
@@ -33,7 +31,8 @@
           command = "alejandra";
           arguments = ["--quiet" "--"];
         };
-        load_direnv = "shell_hook";
+        outline_panel.dock = "left";
+        project_panel.dock = "left";
         telemetry = {
           diagnostics = false;
           metrics = false;
@@ -47,6 +46,7 @@
         vim_mode = false;
       };
     };
+
     xdg.autostart.entries = ["${pkgs.zed-editor}/share/applications/dev.zed.Zed.desktop"];
   };
 }

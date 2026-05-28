@@ -47,10 +47,6 @@
         };
       };
     };
-    home.packages = with pkgs; [
-      alejandra
-      nixd
-    ];
 
     #xdg.autostart.entries = ["${pkgs.${package}}/share/applications/${autostartEntry}"];
   };

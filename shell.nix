@@ -6,5 +6,9 @@ pkgs.mkShell {
     git
     sops
     ssh-to-age
+
+    alejandra
+    nil
+    nixd
   ];
 }

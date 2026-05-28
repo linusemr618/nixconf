@@ -20,8 +20,9 @@ My personal NixOS configuration
 - [x] seahorse integration
 - [x] wifi passwords
 - [x] vpn
+- [x] structure network stuff
 - [ ] kde connect
-- [ ] backup solution
 - [ ] disko
 - [ ] impermanence
+- [ ] backup solution
 - [ ] maybe element desktop

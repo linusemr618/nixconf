@@ -20,13 +20,22 @@
       keyMgmt = builtins.elemAt values 1;
     in {
       connection = {
-        id = id;
+        id = ssid;
         type = "wifi";
       };
-      wifi.ssid = ssid;
+      wifi = {
+        mode = "infrastructure";
+        ssid = ssid;
+      };
       wifi-security = {
+        auth-alg = "open";
         key-mgmt = keyMgmt;
-        psk = "$WIFI_PSK_${id}";
+        psk = "$WIFI_${id}";
+      };
+      ipv4.method = "auto";
+      ipv6 = {
+        addr-gen-mode = "default";
+        method = "auto";
       };
     };
   in {
@@ -48,10 +57,15 @@
                   type = "wifi";
                   autoconnect = false;
                 };
-                wifi.ssid = "Kaffeekanne";
+                wifi.ssid = "Kaffeekanne_P";
                 wifi-security = {
-                  key-mgmt = "wpa-psk";
-                  psk = "$WIFI_PSK_Kaffeekanne_P";
+                  key-mgmt = "sae";
+                  psk = "$WIFI_Kaffeekanne_P";
+                };
+                ipv4.method = "auto";
+                ipv6 = {
+                  addr-gen-mode = "default";
+                  method = "auto";
                 };
               };
               "eduroam" = {
@@ -59,12 +73,23 @@
                   id = "eduroam";
                   type = "wifi";
                 };
-                wifi.ssid = "eduroam";
-                wifi-security.key-mgmt = "wpa-eap";
+                wifi = {
+                  mode = "infrastructure";
+                  ssid = "eduroam";
+                };
+                wifi-security = {
+                  auth-alg = "open";
+                  key-mgmt = "wpa-eap";
+                };
                 "802-1x" = {
                   eap = "pwd";
-                  identity = "$WIFI_IDENTITY_eduroam";
-                  password = "$WIFI_PASSWORD_eduroam";
+                  identity = "$WIFI_eduroam_IDENTITY";
+                  password = "$WIFI_eduroam_PASSWORD";
+                };
+                ipv4.method = "auto";
+                ipv6 = {
+                  addr-gen-mode = "default";
+                  method = "auto";
                 };
               };
               "wg_Kaffeekanne" = {
@@ -73,16 +98,17 @@
                   type = "wireguard";
                   interface-name = "wg_Kaffeekanne";
                   autoconnect = false;
+                  permissions = "user:${config.user.name}:;";
                 };
                 wireguard = {
                   listen-port = 51820;
-                  private-key = "$VPN_PRIVATE_KEY_wg_Kaffeekanne";
+                  private-key = "$VPN_wg_Kaffeekanne_PRIVATE_KEY";
                 };
                 "wireguard-peer.JW/FlZp2O05ragkAoFD/h6TXaw8h1hFhSI0USUEWSkQ=" = {
-                  endpoint = "pfeih0lstx4qf2w1.myfritz.net:52605";
+                  endpoint = "$VPN_wg_Kaffeekanne_ENDPOINT";
                   persistent-keepalive = 25;
                   allowed-ips = "192.168.69.0/24;0.0.0.0/0;fd9c:b5fd:70cf::/64;::/0;";
-                  preshared-key = "$VPN_PSK_wg_Kaffeekanne";
+                  preshared-key = "$VPN_wg_Kaffeekanne_PRESHARED_KEY";
                   preshared-key-flags = 0;
                 };
                 ipv4 = {
@@ -97,6 +123,46 @@
                   address1 = "fd9c:b5fd:70cf::201/64";
                   dns = "fd9c:b5fd:70cf:0:d624:ddff:fe55:6a8c;";
                   dns-search = "fritz.box;";
+                };
+              };
+              "RWTH" = {
+                connection = {
+                  id = "RWTH";
+                  type = "vpn";
+                  autoconnect = false;
+                  permissions = "user:${config.user.name}:;";
+                };
+                vpn = {
+                  authtype = "password";
+                  autoconnect-flags = 0;
+                  certsigs-flags = 0;
+                  cookie-flags = 2;
+                  disable_udp = "no";
+                  enable_csd_trojan = "no";
+                  gateway = "vpn.rwth-aachen.de";
+                  gateway-flags = 2;
+                  gwcert-flags = 2;
+                  lasthost-flags = 0;
+                  pem_passphrase_fsid = "no";
+                  prevent_invalid_cert = "no";
+                  protocol = "anyconnect";
+                  resolve-flags = "2";
+                  stoken_source = "disabled";
+                  useragent = "AnyConnect";
+                  xmlconfig-flags = 0;
+                  service-type = "org.freedesktop.NetworkManager.openconnect";
+                };
+                vpn-secrets = {
+                  "form:main:group_list" = "RWTH-VPN (Full Tunnel)";
+                  "form:main:username" = "$VPN_RWTH_USERNAME";
+                  lasthost = "vpn.rwth-aachen.de (SSLVPN)";
+                  save_passwords = "yes";
+                  xmlconfig = "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4NCjxBbnlDb25uZWN0UHJvZmlsZSB4bWxucz0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvZW5jb2RpbmcvIiB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIiB4c2k6c2NoZW1hTG9jYXRpb249Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL2VuY29kaW5nLyBBbnlDb25uZWN0UHJvZmlsZS54c2QiPg0KCTxDbGllbnRJbml0aWFsaXphdGlvbj4NCgkJPElQUHJvdG9jb2xTdXBwb3J0PklQdjYsSVB2NDwvSVBQcm90b2NvbFN1cHBvcnQ+DQoJPC9DbGllbnRJbml0aWFsaXphdGlvbj4NCgk8U2VydmVyTGlzdD4NCgkJPEhvc3RFbnRyeT4NCgkJCTxIb3N0TmFtZT52cG4ucnd0aC1hYWNoZW4uZGUgKElQc2VjKTwvSG9zdE5hbWU+DQoJCQk8SG9zdEFkZHJlc3M+dnBuLnJ3dGgtYWFjaGVuLmRlPC9Ib3N0QWRkcmVzcz4NCgkJCTxQcmltYXJ5UHJvdG9jb2w+SVBzZWM8L1ByaW1hcnlQcm90b2NvbD4NCgkJPC9Ib3N0RW50cnk+DQoJCTxIb3N0RW50cnk+DQoJCQk8SG9zdE5hbWU+dnBuLnJ3dGgtYWFjaGVuLmRlIChTU0xWUE4pPC9Ib3N0TmFtZT4NCgkJCTxIb3N0QWRkcmVzcz52cG4ucnd0aC1hYWNoZW4uZGU8L0hvc3RBZGRyZXNzPg0KCQk8L0hvc3RFbnRyeT4NCgk8L1NlcnZlckxpc3Q+DQo8L0FueUNvbm5lY3RQcm9maWxlPg0K";
+                };
+                ipv4.method = "auto";
+                ipv6 = {
+                  addr-gen-mode = "default";
+                  method = "auto";
                 };
               };
             };
