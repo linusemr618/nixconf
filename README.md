@@ -21,8 +21,10 @@ My personal NixOS configuration
 - [x] wifi passwords
 - [x] vpn
 - [x] structure network stuff
+- [x] Proton Mail Bridge
 - [ ] kde connect
 - [ ] disko
 - [ ] impermanence
 - [ ] backup solution
 - [ ] maybe element desktop
+- [ ] Librewolf

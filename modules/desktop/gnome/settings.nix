@@ -53,6 +53,7 @@
       sops = {
         secrets = {
           "gnome_settings/gmail_mail" = {};
+          "gnome_settings/proton_mail" = {};
           "gnome_settings/rwth_login" = {};
           "gnome_settings/rwth_mail" = {};
         };
@@ -76,6 +77,27 @@
           MailEnabled=true
           CalendarEnabled=true
           ContactsEnabled=true
+
+          [Account account_1780015617_2]
+          Provider=imap_smtp
+          Identity=${config.sops.placeholder."gnome_settings/proton_mail"}
+          PresentationIdentity=${config.sops.placeholder."gnome_settings/proton_mail"}
+          Enabled=true
+          EmailAddress=${config.sops.placeholder."gnome_settings/proton_mail"}
+          Name=Linus Emmerich
+          ImapHost=127.0.0.1:1143
+          ImapUserName=${config.sops.placeholder."gnome_settings/proton_mail"}
+          ImapUseSsl=false
+          ImapUseTls=true
+          ImapAcceptSslErrors=true
+          SmtpHost=127.0.0.1:1025
+          SmtpUseAuth=true
+          SmtpUserName=${config.sops.placeholder."gnome_settings/proton_mail"}
+          SmtpAuthLogin=false
+          SmtpAuthPlain=true
+          SmtpUseSsl=false
+          SmtpUseTls=true
+          SmtpAcceptSslErrors=true
 
           [Account account_1779632516_0]
           Provider=imap_smtp

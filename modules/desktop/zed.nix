@@ -13,7 +13,8 @@
       defaultEditor = true;
       #mutableUserSettings = false;
       userSettings = {
-        agent_panel.dock = "right";
+        agent.dock = "right";
+        agent_servers.github-copilot-cli.type = "registry";
         auto_install_extensions.nix = true;
         autosave = "on_focus_change";
         base_keymap = "VSCode";

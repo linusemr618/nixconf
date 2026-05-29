@@ -9,15 +9,14 @@
     home.packages = with pkgs; [
       dconf-editor
       fractal
-      geary
       gnome-boxes
       gnome-tweaks
       jetbrains.pycharm
       plex-desktop
       proton-pass
       proton-vpn
-      protonmail-desktop
       spotify
+      sqlitebrowser
       vlc
     ];
 
