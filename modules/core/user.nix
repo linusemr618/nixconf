@@ -2,6 +2,7 @@
   flake.nixosModules.core = {config, ...}: {
     imports = [inputs.home-manager.nixosModules.home-manager];
     users.users.${config.user.name} = {
+      hashedPasswordFile = config.sops.secrets."user/password".path;
       isNormalUser = true;
       description = config.user.description;
       extraGroups = ["networkmanager" "wheel"];
@@ -12,6 +13,7 @@
       useUserPackages = true;
       useGlobalPkgs = true;
     };
+    sops.secrets."user/password" = {};
   };
 
   flake.homeModules.core = {config, ...}: {

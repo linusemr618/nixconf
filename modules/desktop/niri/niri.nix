@@ -1,5 +1,9 @@
 {
-  flake.nixosModules.desktopNiri = {pkgs, ...}: {
+  flake.nixosModules.desktopNiri = {
+    config,
+    pkgs,
+    ...
+  }: {
     programs = {
       niri = {
         enable = true;
@@ -7,7 +11,6 @@
       };
     };
     environment = {
-      sessionVariables.NIXOS_OZONE_WL = "1";
       systemPackages = with pkgs; [
         swayidle
         xwayland-satellite
@@ -19,8 +22,7 @@
       polkit.enable = true;
     };
     services = {
-      /*
-        greetd = {
+      greetd = {
         enable = true;
         settings = {
           default_session = {
@@ -29,7 +31,6 @@
           };
         };
       };
-      */
       #displayManager.gdm.enable = true;
       gnome.gnome-keyring.enable = true;
       power-profiles-daemon.enable = true;
