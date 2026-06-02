@@ -48,13 +48,14 @@
         receive-content = true;
         send-content = true;
       };
+      "org/gnome/shell/extensions/gsconnect/device/c57b85519318447aba3aa6407d26329e/plugin/notification".send-notifications = false;
       "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/runcommand" = {
         command-list = [
           (mkDictionaryEntry ["lock" (mkVariant [(mkDictionaryEntry ["name" "Lock"]) (mkDictionaryEntry ["command" "xdg-screensaver lock"])])])
           (mkDictionaryEntry ["logout" (mkVariant [(mkDictionaryEntry ["name" "Log Out"]) (mkDictionaryEntry ["command" "gnome-session-quit --logout --no-prompt"])])])
           (mkDictionaryEntry ["poweroff" (mkVariant [(mkDictionaryEntry ["name" "Power Off"]) (mkDictionaryEntry ["command" "systemctl poweroff"])])])
           (mkDictionaryEntry ["suspend" (mkVariant [(mkDictionaryEntry ["name" "Suspend"]) (mkDictionaryEntry ["command" "systemctl suspend"])])])
-          (mkDictionaryEntry ["hibernate" (mkVariant [(mkDictionaryEntry ["name" "Hibernate"]) (mkDictionaryEntry ["command" "systemctl hibernate"])])])
+          (mkDictionaryEntry ["8a4c9cfe-2f53-4b9f-9007-e32e52840529" (mkVariant [(mkDictionaryEntry ["name" "Hibernate"]) (mkDictionaryEntry ["command" "systemctl hibernate"])])])
         ];
       };
       "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/share".launch-urls = true;
