@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.desktopNiri = {
+  flake.nixosModules.desktopNiri = {...}: {
     config,
     pkgs,
     ...

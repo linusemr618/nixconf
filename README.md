@@ -1,7 +1,9 @@
 # nixconf
+
 My personal NixOS configuration
 
 ## To-Dos:
+
 - [x] devShell
 - [x] use xdg
 - [x] use nh
@@ -22,9 +24,10 @@ My personal NixOS configuration
 - [x] vpn
 - [x] structure network stuff
 - [x] Proton Mail Bridge
-- [ ] kde connect
+- [x] kde connect
 - [ ] disko
 - [ ] impermanence
 - [ ] backup solution
 - [ ] maybe element desktop
 - [ ] Librewolf
+- [ ] btrfs snapshots

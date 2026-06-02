@@ -40,10 +40,7 @@
     };
   in {
     networking = {
-      firewall = {
-        allowedTCPPorts = [];
-        allowedUDPPorts = [];
-      };
+      hostName = "${config.host.name}";
       networkmanager = {
         enable = true;
         ensureProfiles = {

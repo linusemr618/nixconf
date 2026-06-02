@@ -3,7 +3,7 @@
   self,
   ...
 }: {
-  flake.nixosModules.core = {
+  flake.nixosModules.core = {...}: {
     imports = [inputs.sops-nix.nixosModules.sops];
     sops = {
       defaultSopsFile = self + "/secrets.yaml";

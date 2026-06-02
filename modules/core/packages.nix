@@ -27,6 +27,7 @@
       neovim
       nil
       nixd
+      openssl
       wget
 
       (python3.withPackages (ps: [ps.tkinter]))

@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.desktopGnome = {
+  flake.nixosModules.desktopGnome = {...}: {
     services = {
       displayManager.gdm.enable = true;
       desktopManager.gnome.enable = true;
@@ -7,7 +7,7 @@
     };
   };
 
-  flake.homeModules.desktopGnome = {
+  flake.homeModules.desktopGnome = {...}: {
     programs.gnome-shell.enable = true;
   };
 }

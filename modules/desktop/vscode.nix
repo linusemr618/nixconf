@@ -1,8 +1,8 @@
 {
-  #inputs, ...}: {
-  flake.nixosModules.desktop = {
-    #nixpkgs.overlays = [inputs.nix4vscode.overlays.default];
-  };
+  # inputs, ...}: {
+  # flake.nixosModules.desktop = {...}: {
+  #   nixpkgs.overlays = [inputs.nix4vscode.overlays.default];
+  # };
 
   flake.homeModules.desktop = {pkgs, ...}: let
     package = "vscode";

@@ -9,7 +9,7 @@
     };
   };
 
-  flake.homeModules.desktop = {
+  flake.homeModules.desktop = {...}: {
     dconf.enable = true;
     xdg = {
       enable = true;
