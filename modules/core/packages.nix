@@ -24,6 +24,7 @@
       devenv
       gcc
       git
+      net-tools
       neovim
       nil
       nixd

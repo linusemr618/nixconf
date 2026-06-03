@@ -6,6 +6,7 @@
     ...
   }: {
     programs.gnome-shell.extensions = map (i: {package = pkgs.gnomeExtensions.${i};}) [
+      "adw-gtk3-colorizer"
       "appindicator"
       #"blur-my-shell"
       "caffeine"
