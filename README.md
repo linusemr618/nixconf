@@ -26,8 +26,8 @@ My personal NixOS configuration
 - [x] Proton Mail Bridge
 - [x] kde connect
 - [x] btrfs snapshots
+- [x] maybe element desktop
+- [ ] backup solution (restic)
 - [ ] disko
 - [ ] impermanence
-- [ ] backup solution
-- [ ] maybe element desktop
 - [ ] Librewolf
