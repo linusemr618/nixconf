@@ -8,7 +8,7 @@
     wifiNetworks = {
       "AP23_Main" = ["AP23-Main" "sae"];
       "ELI" = ["ELI" "sae"];
-      "GRUENE" = ["GRUENE" "sae"];
+      "GRUENE" = ["GRUENE" "wpa-psk"];
       "Kaffeekanne" = ["Kaffeekanne" "sae"];
       "Pixel_8_Pro" = ["Pixel 8 Pro" "sae"];
       "VDSt_WLAN" = ["VDSt-WLAN" "sae"];

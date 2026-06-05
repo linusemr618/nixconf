@@ -49,12 +49,25 @@
       };
     };
 
+    gtk.gtk3.bookmarks = [
+      "file://${config.xdg.userDirs.documents} Documents"
+      "file://${config.xdg.userDirs.music} Music"
+      "file://${config.xdg.userDirs.pictures} Pictures"
+      "file://${config.xdg.userDirs.videos} Videos"
+      "file://${config.xdg.userDirs.download} Downloads"
+
+      "sftp://root@192.168.69.20/ / on 192.168.69.20"
+      "file://${config.home.homeDirectory}/nixconf nixconf"
+      "file://${config.home.homeDirectory}/git git"
+      "sftp://jwt00390@login23-g-1.hpc.itc.rwth-aachen.de/rwthfs/rz/cluster/home/jwt00390 jwt00390"
+    ];
+
     sops = {
       secrets = {
-        "gnome_settings/gmail_mail" = {};
-        "gnome_settings/proton_mail" = {};
-        "gnome_settings/rwth_login" = {};
-        "gnome_settings/rwth_mail" = {};
+        "gnome/settings/gmail_mail" = {};
+        "gnome/settings/proton_mail" = {};
+        "gnome/settings/rwth_login" = {};
+        "gnome/settings/rwth_mail" = {};
       };
       templates."accounts.conf".content = ''
         [Account account_1779291630_0]
@@ -71,27 +84,27 @@
 
         [Account account_1779555501_0]
         Provider=google
-        Identity=${config.sops.placeholder."gnome_settings/gmail_mail"}
-        PresentationIdentity=${config.sops.placeholder."gnome_settings/gmail_mail"}
+        Identity=${config.sops.placeholder."gnome/settings/gmail_mail"}
+        PresentationIdentity=${config.sops.placeholder."gnome/settings/gmail_mail"}
         MailEnabled=true
         CalendarEnabled=true
         ContactsEnabled=true
 
         [Account account_1780015617_2]
         Provider=imap_smtp
-        Identity=${config.sops.placeholder."gnome_settings/proton_mail"}
-        PresentationIdentity=${config.sops.placeholder."gnome_settings/proton_mail"}
+        Identity=${config.sops.placeholder."gnome/settings/proton_mail"}
+        PresentationIdentity=${config.sops.placeholder."gnome/settings/proton_mail"}
         Enabled=true
-        EmailAddress=${config.sops.placeholder."gnome_settings/proton_mail"}
+        EmailAddress=${config.sops.placeholder."gnome/settings/proton_mail"}
         Name=Linus Emmerich
         ImapHost=127.0.0.1:1143
-        ImapUserName=${config.sops.placeholder."gnome_settings/proton_mail"}
+        ImapUserName=${config.sops.placeholder."gnome/settings/proton_mail"}
         ImapUseSsl=false
         ImapUseTls=true
         ImapAcceptSslErrors=true
         SmtpHost=127.0.0.1:1025
         SmtpUseAuth=true
-        SmtpUserName=${config.sops.placeholder."gnome_settings/proton_mail"}
+        SmtpUserName=${config.sops.placeholder."gnome/settings/proton_mail"}
         SmtpAuthLogin=false
         SmtpAuthPlain=true
         SmtpUseSsl=false
@@ -100,19 +113,19 @@
 
         [Account account_1779632516_0]
         Provider=imap_smtp
-        Identity=${config.sops.placeholder."gnome_settings/rwth_mail"}
-        PresentationIdentity=${config.sops.placeholder."gnome_settings/rwth_mail"}
+        Identity=${config.sops.placeholder."gnome/settings/rwth_mail"}
+        PresentationIdentity=${config.sops.placeholder."gnome/settings/rwth_mail"}
         Enabled=true
-        EmailAddress=${config.sops.placeholder."gnome_settings/rwth_mail"}
+        EmailAddress=${config.sops.placeholder."gnome/settings/rwth_mail"}
         Name=Linus Emmerich
         ImapHost=mail.rwth-aachen.de
-        ImapUserName=${config.sops.placeholder."gnome_settings/rwth_login"}
+        ImapUserName=${config.sops.placeholder."gnome/settings/rwth_login"}
         ImapUseSsl=true
         ImapUseTls=false
         ImapAcceptSslErrors=true
         SmtpHost=mail.rwth-aachen.de
         SmtpUseAuth=true
-        SmtpUserName=${config.sops.placeholder."gnome_settings/rwth_login"}
+        SmtpUserName=${config.sops.placeholder."gnome/settings/rwth_login"}
         SmtpAuthLogin=true
         SmtpAuthPlain=false
         SmtpUseSsl=false
