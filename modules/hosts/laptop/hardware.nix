@@ -30,6 +30,12 @@
       options = ["subvol=@home" "compress=zstd" "noatime"];
     };
 
+    fileSystems."/home/.snapshots" = {
+      device = "/dev/mapper/luks-790845fb-5510-436c-9e2b-3abff24f506a";
+      fsType = "btrfs";
+      options = ["subvol=@home_snapshots" "compress=zstd" "noatime"];
+    };
+
     fileSystems."/nix" = {
       device = "/dev/mapper/luks-790845fb-5510-436c-9e2b-3abff24f506a";
       fsType = "btrfs";

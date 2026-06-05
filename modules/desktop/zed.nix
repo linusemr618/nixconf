@@ -6,11 +6,7 @@
     ];
   };
 
-  flake.modules.homeManager.desktop = {
-    config,
-    pkgs,
-    ...
-  }: {
+  flake.modules.homeManager.desktop = {config, ...}: {
     programs.zed-editor = {
       enable = true;
       extensions = ["nix"];
@@ -57,6 +53,6 @@
       };
     };
 
-    xdg.autostart.entries = ["${pkgs.zed-editor}/share/applications/dev.zed.Zed.desktop"];
+    #xdg.autostart.entries = ["${pkgs.zed-editor}/share/applications/dev.zed.Zed.desktop"];
   };
 }
