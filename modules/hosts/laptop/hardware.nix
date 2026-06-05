@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.hostsLaptop = {
+  flake.modules.nixos.hostsLaptop = {
     config,
     lib,
     modulesPath,

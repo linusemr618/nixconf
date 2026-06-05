@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.core = {...}: {
+  flake.modules.nixos.core = {...}: {
     services.snapper = {
       snapshotInterval = "daily";
       cleanupInterval = "daily";

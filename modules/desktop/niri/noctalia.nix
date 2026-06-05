@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.desktopNiri = {pkgs, ...}: {
+  flake.modules.nixos.desktopNiri = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       noctalia-shell
     ];

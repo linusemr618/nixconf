@@ -1,5 +1,5 @@
 {
-  flake.homeModules.desktopGnome = {pkgs, ...}: {
+  flake.modules.homeManager.desktopGnome = {pkgs, ...}: {
     dconf.settings = {
       "org/gnome/desktop/interface".color-scheme = "prefer-dark";
     };

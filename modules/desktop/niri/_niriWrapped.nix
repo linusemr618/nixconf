@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  flake.nixosModules.desktopNiri = {
+  flake.modules.nixos.desktopNiri = {
     config,
     pkgs,
     ...

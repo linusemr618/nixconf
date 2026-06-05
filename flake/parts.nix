@@ -1,8 +1,5 @@
 {inputs, ...}: {
-  imports = [
-    inputs.flake-parts.flakeModules.modules
-    inputs.home-manager.flakeModules.home-manager
-  ];
-  config.systems = ["x86_64-linux"];
-  #debug = true;
+  imports = [inputs.flake-parts.flakeModules.modules];
+  systems = ["x86_64-linux"];
+  debug = true;
 }

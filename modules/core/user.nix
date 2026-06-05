@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.nixosModules.core = {config, ...}: {
+  flake.modules.nixos.core = {config, ...}: {
     imports = [inputs.home-manager.nixosModules.home-manager];
     users.users.${config.user.name} = {
       hashedPasswordFile = config.sops.secrets."user/password".path;
@@ -16,7 +16,7 @@
     sops.secrets."user/password" = {};
   };
 
-  flake.homeModules.core = {config, ...}: {
+  flake.modules.homeManager.core = {config, ...}: {
     home = {
       username = config.user.name;
       homeDirectory = "/home/${config.user.name}";

@@ -1,12 +1,12 @@
 {
-  flake.nixosModules.desktop = {pkgs, ...}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: {
     programs.nix-ld.libraries = with pkgs; [
       libsecret
       glib
     ];
   };
 
-  flake.homeModules.desktop = {
+  flake.modules.homeManager.desktop = {
     config,
     pkgs,
     ...
@@ -37,8 +37,8 @@
           arguments = ["--quiet" "--"];
         };
         lsp.nixd.settings.options = {
-          #flake-parts.expr = "(builtins.getFlake (builtins.toString ./.)).debug.options";
-          #flake-parts2.expr = "(builtins.getFlake (builtins.toString ./.)).currentSystem.options";
+          flake-parts.expr = "(builtins.getFlake (builtins.toString ./.)).debug.options";
+          flake-parts2.expr = "(builtins.getFlake (builtins.toString ./.)).currentSystem.options";
           home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${config.host.name}.options.home-manager.users.type.getSubOptions []";
         };
         outline_panel.dock = "left";

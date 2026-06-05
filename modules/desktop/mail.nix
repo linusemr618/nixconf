@@ -1,5 +1,5 @@
 {
-  flake.homeModules.desktop = {pkgs, ...}: {
+  flake.modules.homeManager.desktop = {pkgs, ...}: {
     home.packages = [pkgs.geary];
     services.protonmail-bridge.enable = true;
 

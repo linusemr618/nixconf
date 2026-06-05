@@ -1,11 +1,11 @@
 {
-  flake.nixosModules.desktop = {pkgs, ...}: {
+  flake.modules.nixos.desktop = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       gparted
     ];
   };
 
-  flake.homeModules.desktop = {pkgs, ...}: {
+  flake.modules.homeManager.desktop = {pkgs, ...}: {
     home.packages = with pkgs; [
       dconf-editor
       fractal

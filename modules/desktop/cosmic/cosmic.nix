@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.desktopCosmic = {...}: {
+  flake.modules.nixos.desktopCosmic = {...}: {
     services = {
       displayManager.gdm.enable = true;
       desktopManager.cosmic.enable = true;

@@ -1,5 +1,5 @@
 {
-  flake.homeModules.core = {pkgs, ...}: {
+  flake.modules.homeManager.core = {pkgs, ...}: {
     programs.tmux = {
       enable = true;
       clock24 = true;

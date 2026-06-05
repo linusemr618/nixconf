@@ -1,5 +1,5 @@
 {
-  flake.homeModules.desktop = {pkgs, ...}: {
+  flake.modules.homeManager.desktop = {pkgs, ...}: {
     programs.brave = {
       enable = true;
       #defaultSearchProviderEnabled = true;

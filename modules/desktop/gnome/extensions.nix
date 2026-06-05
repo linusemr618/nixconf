@@ -1,5 +1,5 @@
 {
-  flake.homeModules.desktopGnome = {
+  flake.modules.homeManager.desktopGnome = {
     config,
     lib,
     pkgs,
@@ -63,7 +63,7 @@
     };
   };
 
-  flake.nixosModules.desktopGnome = {...}: {
+  flake.modules.nixos.desktopGnome = {...}: {
     networking.firewall = {
       allowedTCPPortRanges = [
         {

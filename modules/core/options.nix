@@ -22,6 +22,6 @@ let
     };
   };
 in {
-  flake.nixosModules.core = myOptions;
-  flake.homeModules.core = myOptions;
+  flake.modules.nixos.core = myOptions;
+  flake.modules.homeManager.core = myOptions;
 }

@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.core = {pkgs, ...}: {
+  flake.modules.nixos.core = {pkgs, ...}: {
     programs.fish.enable = true;
     programs.bash = {
       interactiveShellInit = ''
@@ -12,7 +12,7 @@
     };
   };
 
-  flake.homeModules.core = {
+  flake.modules.homeManager.core = {
     config,
     pkgs,
     ...

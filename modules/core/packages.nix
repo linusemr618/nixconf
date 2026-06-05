@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.core = {pkgs, ...}: {
+  flake.modules.nixos.core = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       aircrack-ng
     ];
@@ -17,7 +17,7 @@
     # services.flatpak.enable = true;
   };
 
-  flake.homeModules.core = {pkgs, ...}: {
+  flake.modules.homeManager.core = {pkgs, ...}: {
     home.packages = with pkgs; [
       alejandra
       android-tools

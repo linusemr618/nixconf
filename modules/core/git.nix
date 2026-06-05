@@ -1,5 +1,5 @@
 {
-  flake.homeModules.core = {...}: {
+  flake.modules.homeManager.core = {...}: {
     programs.git = {
       enable = true;
       lfs.enable = true;

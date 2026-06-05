@@ -3,7 +3,7 @@
   self,
   ...
 }: {
-  flake.nixosModules.core = {...}: {
+  flake.modules.nixos.core = {...}: {
     imports = [inputs.sops-nix.nixosModules.sops];
     sops = {
       defaultSopsFile = self + "/secrets.yaml";
@@ -11,7 +11,7 @@
     };
   };
 
-  flake.homeModules.core = {pkgs, ...}: {
+  flake.modules.homeManager.core = {pkgs, ...}: {
     imports = [inputs.sops-nix.homeManagerModules.sops];
     home.packages = with pkgs; [
       age

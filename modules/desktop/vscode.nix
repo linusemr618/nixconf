@@ -1,10 +1,10 @@
 {
   # inputs, ...}: {
-  # flake.nixosModules.desktop = {...}: {
+  # flake.modules.nixos.desktop = {...}: {
   #   nixpkgs.overlays = [inputs.nix4vscode.overlays.default];
   # };
 
-  flake.homeModules.desktop = {pkgs, ...}: let
+  flake.modules.homeManager.desktop = {pkgs, ...}: let
     package = "vscode";
     #autostartEntry = "code.desktop";
   in {

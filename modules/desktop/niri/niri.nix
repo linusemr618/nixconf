@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.desktopNiri = {...}: {
+  flake.modules.nixos.desktopNiri = {...}: {
     config,
     pkgs,
     ...
@@ -43,7 +43,7 @@
     };
   };
 
-  flake.homeModules.desktopNiri = {pkgs, ...}: {
+  flake.modules.homeManager.desktopNiri = {pkgs, ...}: {
     programs = {
       fuzzel.enable = true;
     };

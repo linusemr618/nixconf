@@ -1,5 +1,5 @@
 {
-  flake.homeModules.desktopGnome = {
+  flake.modules.homeManager.desktopGnome = {
     config,
     lib,
     ...

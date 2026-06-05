@@ -9,22 +9,22 @@
       inputs.nixos-hardware.nixosModules.common-pc-ssd
       inputs.nixos-hardware.nixosModules.common-cpu-intel
 
-      self.nixosModules.hostsLaptop
-      self.nixosModules.core
-      self.nixosModules.desktop
-      self.nixosModules.desktopGnome
+      self.modules.nixos.hostsLaptop
+      self.modules.nixos.core
+      self.modules.nixos.desktop
+      self.modules.nixos.desktopGnome
 
       ({config, ...}: {
         home-manager.users.${config.user.name}.imports = [
-          self.homeModules.hostsLaptop
-          self.homeModules.core
-          self.homeModules.desktop
-          self.homeModules.desktopGnome
+          self.modules.homeManager.hostsLaptop
+          self.modules.homeManager.core
+          self.modules.homeManager.desktop
+          self.modules.homeManager.desktopGnome
         ];
       })
     ];
   };
-  flake.nixosModules.hostsLaptop = {lib, ...}: {
+  flake.modules.nixos.hostsLaptop = {lib, ...}: {
     options.host.name = lib.mkOption {
       type = lib.types.str;
       default = "laptop";
@@ -43,7 +43,7 @@
       ];
     };
   };
-  flake.homeModules.hostsLaptop = {lib, ...}: {
+  flake.modules.homeManager.hostsLaptop = {lib, ...}: {
     options.host.name = lib.mkOption {
       type = lib.types.str;
       default = "laptop";
