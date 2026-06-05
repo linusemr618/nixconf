@@ -1,7 +1,9 @@
 {
   flake.modules.nixos.core = {...}: {
     services.snapper = {
+      cleanupInterval = "1d";
       persistentTimer = true;
+      snapshotInterval = "daily";
       configs = {
         home = {
           SUBVOLUME = "/home";
