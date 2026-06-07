@@ -13,6 +13,7 @@
       "Pixel_8_Pro" = ["Pixel 8 Pro" "sae"];
       "VDSt_WLAN" = ["VDSt-WLAN" "sae"];
       "Vodafone_2085" = ["Vodafone-2085" "sae"];
+      "WLAN_569752" = ["WLAN-569752" "wpa-psk"];
       "WLAN_770356_EXT2_4G" = ["WLAN-770356_EXT2.4G" "sae"];
     };
     mkWifiProfile = id: values: let
