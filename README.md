@@ -30,4 +30,4 @@ My personal NixOS configuration
 - [ ] backup solution (restic)
 - [ ] disko
 - [ ] impermanence
-- [ ] Librewolf
+- [ ] Librewolf/Zed

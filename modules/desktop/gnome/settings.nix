@@ -16,6 +16,7 @@
         remove-old-trash-files = true;
       };
       "org/gnome/desktop/screensaver".lock-delay = mkUint32 60;
+      "org/gnome/desktop/wm/keybindings".toggle-fullscreen = ["<Super>F11"];
       "org/gnome/mutter".experimental-features = ["kms-modifiers" "autoclose-xwayland"];
       "org/gnome/settings-daemon/plugins/color" = {
         night-light-enabled = true;
