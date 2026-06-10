@@ -6,10 +6,11 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager"; #/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:denful/import-tree";
+    #myNixpkgs.url = "path:/home/linus/git/nixpkgs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";

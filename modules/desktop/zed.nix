@@ -6,7 +6,7 @@
     ];
   };
 
-  flake.modules.homeManager.desktop = {config, ...}: {
+  flake.modules.homeManager.desktop = {...}: {
     programs.zed-editor = {
       enable = true;
       extensions = ["nix"];
@@ -21,6 +21,7 @@
         buffer_font_size = 15;
         collaboration_panel.dock = "left";
         edit_predictions.provider = "copilot";
+        format_on_save = "off";
         git_panel.dock = "left";
         hour_format = "hour24";
         icon_theme = {
@@ -31,11 +32,6 @@
         languages.Nix.formatter.external = {
           command = "alejandra";
           arguments = ["--quiet" "--"];
-        };
-        lsp.nixd.settings.options = {
-          flake-parts-debug.expr = "(builtins.getFlake (builtins.toString ./.)).debug.options";
-          flake-parts-system.expr = "(builtins.getFlake (builtins.toString ./.)).currentSystem.options";
-          home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${config.host.name}.options.home-manager.users.type.getSubOptions []";
         };
         outline_panel.dock = "left";
         project_panel.dock = "left";

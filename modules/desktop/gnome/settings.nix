@@ -46,6 +46,7 @@
       "org/gnome/gnome-system-monitor" = {
         show-whose-processes = "all";
         cpu-stacked-area-chart = true;
+        process-memory-in-iec = true;
         resources-memory-in-iec = true;
       };
     };

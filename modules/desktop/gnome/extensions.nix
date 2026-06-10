@@ -12,7 +12,7 @@
       "caffeine"
       "clipboard-indicator"
       #"dash-to-dock"
-      #"forge"
+      "forge"
       "gsconnect"
       #"paperwm"
     ];

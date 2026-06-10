@@ -1,0 +1,20 @@
+{
+  "lsp": {
+    "nixd": {
+      "settings": {
+        "options": {
+          "flake-parts-debug": {
+            "expr": "(builtins.getFlake (builtins.toString ./.)).debug.options",
+          },
+          "flake-parts-system": {
+            "expr": "(builtins.getFlake (builtins.toString ./.)).currentSystem.options",
+          },
+          "home-manager": {
+            "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.laptop.options.home-manager.users.type.getSubOptions []",
+          },
+        },
+      },
+    },
+  },
+  "format_on_save": "on",
+}
