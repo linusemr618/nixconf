@@ -22,6 +22,7 @@
       alejandra
       android-tools
       devenv
+      ffmpeg-full
       gcc
       git
       net-tools
