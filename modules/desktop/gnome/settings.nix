@@ -75,13 +75,13 @@
         [Account account_1779291630_0]
         Provider=owncloud
         Identity=linusemmerich
-        PresentationIdentity=linusemmerich@nextcloud.kaffeekanne.xyz
-        Uri=https://nextcloud.kaffeekanne.xyz:443/remote.php/webdav/
+        PresentationIdentity=linusemmerich@cloud.kaffeekanne.xyz
+        Uri=https://cloud.kaffeekanne.xyz:443/remote.php/webdav/
         FilesEnabled=true
         CalendarEnabled=true
-        CalDavUri=https://nextcloud.kaffeekanne.xyz:443/remote.php/dav/
+        CalDavUri=https://cloud.kaffeekanne.xyz:443/remote.php/dav/
         ContactsEnabled=true
-        CardDavUri=https://nextcloud.kaffeekanne.xyz:443/remote.php/dav/
+        CardDavUri=https://cloud.kaffeekanne.xyz:443/remote.php/dav/
         AcceptSslErrors=false
 
         [Account account_1779555501_0]

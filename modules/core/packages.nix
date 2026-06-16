@@ -21,10 +21,12 @@
     home.packages = with pkgs; [
       alejandra
       android-tools
+      cargo
       devenv
       ffmpeg-full
       gcc
       git
+      htop
       net-tools
       nil
       nixd
