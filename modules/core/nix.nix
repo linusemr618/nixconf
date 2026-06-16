@@ -26,11 +26,10 @@
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
     };
 
+    documentation.man.cache.enable = false;
     programs.nix-ld.enable = true;
-
     programs.nix-index-database.comma.enable = true;
-    environment.sessionVariables = {COMMA_CACHING = 0;};
-
+    environment.sessionVariables = {COMMA_CACHING = 1;};
     programs.nh = {
       enable = true;
       clean = {
