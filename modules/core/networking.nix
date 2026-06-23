@@ -6,17 +6,20 @@
     ...
   }: let
     wifiNetworks = {
-      "AP23_Main" = "AP23-Main";
-      "ELI" = "ELI";
-      "GRUENE" = "GRUENE";
-      "Kaffeekanne" = "Kaffeekanne";
-      "Pixel_8_Pro" = "Pixel 8 Pro";
-      "VDSt_WLAN" = "VDSt-WLAN";
-      "Vodafone_2085" = "Vodafone-2085";
-      "WLAN_569752" = "WLAN-569752";
-      "WLAN_770356_EXT2_4G" = "WLAN-770356_EXT2.4G";
+      "AP23_Main" = ["AP23-Main" "sae"];
+      "ELI" = ["ELI" "sae"];
+      "GRUENE" = ["GRUENE" "wpa-psk"];
+      "Kaffeekanne" = ["Kaffeekanne" "sae"];
+      "Pixel_8_Pro" = ["Pixel 8 Pro" "sae"];
+      "VDSt_WLAN" = ["VDSt-WLAN" "sae"];
+      "Vodafone_2085" = ["Vodafone-2085" "sae"];
+      "WLAN_569752" = ["WLAN-569752" "wpa-psk"];
+      "WLAN_770356_EXT2_4G" = ["WLAN-770356_EXT2.4G" "sae"];
     };
-    mkWifiProfile = id: ssid: {
+    mkWifiProfile = id: values: let
+      ssid = builtins.elemAt values 0;
+      keyMgmt = builtins.elemAt values 1;
+    in {
       connection = {
         id = ssid;
         type = "wifi";
@@ -27,7 +30,7 @@
       };
       wifi-security = {
         auth-alg = "open";
-        key-mgmt = "wpa-psk";
+        key-mgmt = keyMgmt;
         psk = "$WIFI_${id}";
       };
       ipv4.method = "auto";

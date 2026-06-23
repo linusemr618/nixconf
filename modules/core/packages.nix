@@ -31,6 +31,7 @@
       nil
       nixd
       openssl
+      usbutils
       wget
 
       (python3.withPackages (ps: [ps.tkinter]))

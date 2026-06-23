@@ -133,6 +133,18 @@
         SmtpUseSsl=false
         SmtpUseTls=true
         SmtpAcceptSslErrors=true
+
+        [Account account_1781685342_0]
+        Provider=owncloud
+        Identity=EmmeriLi
+        PresentationIdentity=EmmeriLi@wolke.netzbegruenung.de
+        Uri=https://wolke.netzbegruenung.de:443/remote.php/webdav/
+        FilesEnabled=true
+        CalendarEnabled=true
+        CalDavUri=https://wolke.netzbegruenung.de:443/remote.php/dav/
+        ContactsEnabled=true
+        CardDavUri=https://wolke.netzbegruenung.de:443/remote.php/dav/
+        AcceptSslErrors=false
       '';
     };
 
