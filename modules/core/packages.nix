@@ -24,6 +24,7 @@
       cargo
       devenv
       ffmpeg-full
+      fh
       gcc
       git
       htop

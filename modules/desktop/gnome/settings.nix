@@ -30,7 +30,7 @@
         name = "Launch Console";
       };
       "org/gnome/settings-daemon/plugins/power".power-button-action = "hibernate";
-      "org/gnome/shell".favorite-apps = ["brave-browser.desktop" "org.gnome.Nautilus.desktop" "org.gnome.Console.desktop" "org.gnome.TextEditor.desktop" "dev.zed.Zed.desktop" "pycharm.desktop"];
+      "org/gnome/shell".favorite-apps = ["brave-browser.desktop" "zen-beta.desktop" "org.gnome.Nautilus.desktop" "org.gnome.Console.desktop" "org.gnome.TextEditor.desktop" "dev.zed.Zed.desktop" "pycharm.desktop"];
       "org/gnome/system/location".enabled = true;
 
       "org/gnome/nautilus/list-view" = {

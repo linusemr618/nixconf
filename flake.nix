@@ -1,38 +1,39 @@
 {
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1";
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/0.1";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nix.inputs.flake-parts.follows = "flake-parts";
     };
+    flake-parts.url = "https://flakehub.com/f/hercules-ci/flake-parts/0.1";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "https://flakehub.com/f/nix-community/home-manager/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:denful/import-tree";
     #myNixpkgs.url = "path:/home/linus/git/nixpkgs";
-    nixos-hardware = {
-      url = "github:nixos/nixos-hardware";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware = {
+      url = "https://flakehub.com/f/nixos/nixos-hardware/0.1";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
     sops-nix = {
-      url = "github:Mic92/sops-nix";
+      url = "https://flakehub.com/f/Mic92/sops-nix/0.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # zen-browser = {
-    #   url = "github:0xc000022070/zen-browser-flake";
-    #   inputs = {
-    #     home-manager.follows = "home-manager";
-    #     nixpkgs.follows = "nixpkgs";
-    #   };
-    # };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     /*
-      nix4vscode = {
+    nix4vscode = {
       url = "github:nix-community/nix4vscode";
       inputs.nixpkgs.follows = "nixpkgs";
     };
