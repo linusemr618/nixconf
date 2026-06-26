@@ -25,6 +25,7 @@
       devenv
       ffmpeg-full
       fh
+      file
       gcc
       git
       htop
