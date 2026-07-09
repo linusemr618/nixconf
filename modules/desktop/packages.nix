@@ -12,6 +12,7 @@
       gnome-boxes
       gnome-tweaks
       jetbrains.pycharm
+      libreoffice
       plex-desktop
       proton-pass
       proton-vpn
