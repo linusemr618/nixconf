@@ -4,12 +4,15 @@
     lib,
     ...
   }: {
-    imports = [
-      inputs.nix-index-database.nixosModules.default
-      inputs.determinate.nixosModules.default
-    ];
+    imports = [inputs.nix-index-database.nixosModules.default];
 
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs = {
+      config.allowUnfree = true;
+      overlays = [
+        inputs.nur.overlays.default
+        #(_: prev: {gnomeExtensions = prev.gnomeExtensions // {forge = inputs.myNixpkgs.legacyPackages.${prev.stdenv.hostPlatform.system}.gnomeExtensions.forge;};})
+      ];
+    };
     nix = {
       channel.enable = false;
       settings = {
@@ -18,7 +21,6 @@
           "ca-derivations"
           "flakes"
           "nix-command"
-          "parallel-eval"
         ];
         substituters = ["https://nix-community.cachix.org"];
         trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];

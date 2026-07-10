@@ -1,9 +1,17 @@
 {inputs, ...}: {
-  flake.modules.homeManager.desktop = {...}: {
+  flake.modules.homeManager.desktop = {pkgs, ...}: {
     imports = [inputs.zen-browser.homeModules.beta];
     programs.zen-browser = {
       enable = true;
       profiles.default = {
+        extensions = {
+          packages = with pkgs.nur.repos.rycee.firefox-addons; [
+            proton-pass
+            proton-vpn
+            ublock-origin
+            video-downloadhelper
+          ];
+        };
         search = {
           force = true;
           default = "startpage";
@@ -39,7 +47,9 @@
           "dom.security.https_only_mode" = true;
           "network.trr.mode" = 3;
           "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
+          "privacy.history.custom" = false;
           "privacy.trackingprotection.allow_list.convenience.enabled" = true;
+          "zen.tabs.show-newtab-vertical" = false;
 
           "browser.contentblocking.category" = "strict";
           "network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation" = true;
