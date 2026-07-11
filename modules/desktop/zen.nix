@@ -33,7 +33,23 @@
             };
             startpage = {
               name = "Startpage";
-              urls = [{template = "https://www.startpage.com/sp/search?query={searchTerms}";}];
+              urls = [
+                {
+                  method = "POST";
+                  template = "https://www.startpage.com/sp/search";
+                  params = [
+                    {
+                      name = "query";
+                      value = "{searchTerms}";
+                    }
+                  ];
+                }
+
+                {
+                  type = "application/x-suggestions+json";
+                  template = "https://www.startpage.com/osuggestions?query={searchTerms}";
+                }
+              ];
               definedAliases = ["@sp"];
             };
           };
@@ -44,6 +60,7 @@
           "browser.ml.linkPreview.optin" = true;
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = true;
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = true;
+          "browser.search.suggest.enabled" = true;
           "browser.translations.neverTranslateLanguages" = "de";
           "dom.security.https_only_mode" = true;
           "network.trr.mode" = 3;
