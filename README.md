@@ -27,7 +27,7 @@ My personal NixOS configuration
 - [x] kde connect
 - [x] btrfs snapshots
 - [x] maybe element desktop
+- [x] Librewolf/Zen
 - [ ] backup solution (restic)
 - [ ] disko
 - [ ] impermanence
-- [ ] Librewolf/Zen
