@@ -44,17 +44,21 @@
           "browser.ml.linkPreview.optin" = true;
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = true;
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = true;
+          "browser.translations.neverTranslateLanguages" = "de";
           "dom.security.https_only_mode" = true;
           "network.trr.mode" = 3;
           "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
           "privacy.history.custom" = false;
           "privacy.trackingprotection.allow_list.convenience.enabled" = true;
           "zen.tabs.show-newtab-vertical" = false;
+          "zen.view.show-newtab-button-top" = false;
 
           "browser.contentblocking.category" = "strict";
           "network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation" = true;
+          "network.lna.blocking" = true;
           "privacy.annotate_channels.strict_list.enabled" = true;
           "privacy.bounceTrackingProtection.mode" = 1;
+          "privacy.fingerprintingProtection" = true;
           "privacy.query_stripping.enabled" = true;
           "privacy.query_stripping.enabled.pbmode" = true;
           "privacy.trackingprotection.consentmanager.skip.pbmode.enabled" = false;
