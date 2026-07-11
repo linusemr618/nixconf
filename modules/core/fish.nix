@@ -32,7 +32,7 @@
           "done"
           "hydro"
           "grc"
-          "colored-man-pages"
+          #"colored-man-pages"
           "z"
         ];
       functions = {

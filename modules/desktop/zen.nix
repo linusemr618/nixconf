@@ -42,6 +42,10 @@
                       name = "query";
                       value = "{searchTerms}";
                     }
+                    {
+                      name = "prfe";
+                      value = "26b77e0ef13273610e32813c3233d92429c5426b277dcad41b2f2d38f94a44e839aa1abc7cf4223afd5872a185d5c9976949b9b1f0f83bbde3f9d4ac610d8fffa03947db6336c7a249ef62c2824adfd1";
+                    }
                   ];
                 }
 
@@ -61,6 +65,7 @@
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = true;
           "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = true;
           "browser.search.suggest.enabled" = true;
+          "browser.search.suggest.enabled.private" = true;
           "browser.translations.neverTranslateLanguages" = "de";
           "dom.security.https_only_mode" = true;
           "network.trr.mode" = 3;
