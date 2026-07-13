@@ -29,6 +29,7 @@
       gcc
       git
       htop
+      hping
       net-tools
       nil
       nixd

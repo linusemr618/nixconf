@@ -10,6 +10,7 @@
       dconf-editor
       fractal
       gnome-boxes
+      gnome-network-displays
       gnome-tweaks
       jetbrains.pycharm
       libreoffice
