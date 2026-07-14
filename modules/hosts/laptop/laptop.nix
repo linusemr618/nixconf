@@ -24,7 +24,11 @@
       })
     ];
   };
-  flake.modules.nixos.hostsLaptop = {lib, ...}: {
+  flake.modules.nixos.hostsLaptop = {
+    lib,
+    pkgs,
+    ...
+  }: {
     options.host.name = lib.mkOption {
       type = lib.types.str;
       default = "laptop";
@@ -34,6 +38,10 @@
         resumeDevice = "/dev/mapper/luks-790845fb-5510-436c-9e2b-3abff24f506a";
         kernelParams = ["resume_offset=11168313"];
         zswap.enable = true;
+
+        loader.systemd-boot.enable = true;
+        loader.efi.canTouchEfiVariables = true;
+        kernelPackages = pkgs.linuxPackages_latest;
       };
       swapDevices = [
         {
