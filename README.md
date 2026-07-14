@@ -2,6 +2,36 @@
 
 My personal NixOS configuration
 
+## Installation
+
+### Setup
+
+```bash
+nix-shell -p git && git clone https://github.com/linusemr618/nixconf && exit
+cd nixconf
+nix-shell
+```
+
+### Build and switch to the configuration
+
+With my private age key placed in `~/.config/sops/age/keys.txt`:
+
+```bash
+sudo nixos-rebuild switch --flake .#laptop
+```
+
+Without my private age key:
+
+```bash
+sudo EMPTY_SECRETS=1 nixos-rebuild switch --impure --flake .#laptop
+```
+
+### Build an ISO file
+
+```bash
+EMPTY_SECRETS=1 nix build --impure .#iso
+```
+
 ## To-Dos:
 
 - [x] devShell
@@ -31,3 +61,7 @@ My personal NixOS configuration
 - [ ] backup solution (restic)
 - [ ] disko
 - [ ] impermanence
+
+```
+
+```
