@@ -1,0 +1,21 @@
+{
+  flake.modules.nixos.minimal = {...}: {
+    services.snapper = {
+      cleanupInterval = "1d";
+      persistentTimer = true;
+      snapshotInterval = "daily";
+      configs = {
+        home = {
+          SUBVOLUME = "/home";
+          TIMELINE_CREATE = true;
+          TIMELINE_CLEANUP = true;
+          TIMELINE_LIMIT_HOURLY = "0";
+          TIMELINE_LIMIT_DAILY = "7";
+          TIMELINE_LIMIT_WEEKLY = "4";
+          TIMELINE_LIMIT_MONTHLY = "0";
+          TIMELINE_LIMIT_YEARLY = "0";
+        };
+      };
+    };
+  };
+}

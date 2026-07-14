@@ -10,16 +10,16 @@
       inputs.nixos-hardware.nixosModules.common-cpu-intel
 
       self.modules.nixos.hostsLaptop
-      self.modules.nixos.core
-      self.modules.nixos.desktop
-      self.modules.nixos.desktopGnome
+      self.modules.nixos.minimal
+      self.modules.nixos.graphical
+      self.modules.nixos.graphicalGnome
 
       ({config, ...}: {
         home-manager.users.${config.user.name}.imports = [
           self.modules.homeManager.hostsLaptop
-          self.modules.homeManager.core
-          self.modules.homeManager.desktop
-          self.modules.homeManager.desktopGnome
+          self.modules.homeManager.minimal
+          self.modules.homeManager.graphical
+          self.modules.homeManager.graphicalGnome
         ];
       })
     ];
