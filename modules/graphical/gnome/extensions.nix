@@ -35,7 +35,7 @@
 
       "org/gnome/shell/extensions/caffeine" = {
         #enable-mpris = true;
-        nightlight-control = "always";
+        #nightlight-control = "always";
         show-notifications = false;
         toggle-shortcut = ["<Super>c"];
       };
@@ -49,7 +49,7 @@
         receive-content = true;
         send-content = true;
       };
-      "org/gnome/shell/extensions/gsconnect/device/c57b85519318447aba3aa6407d26329e/plugin/notification".send-notifications = false;
+      "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/notification".send-notifications = false;
       "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/runcommand" = {
         command-list = [
           (mkDictionaryEntry ["lock" (mkVariant [(mkDictionaryEntry ["name" "Lock"]) (mkDictionaryEntry ["command" "xdg-screensaver lock"])])])
