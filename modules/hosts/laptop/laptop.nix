@@ -5,16 +5,17 @@
 }: {
   flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      inputs.nixos-hardware.nixosModules.common-pc-laptop
-      inputs.nixos-hardware.nixosModules.common-pc-ssd
-      inputs.nixos-hardware.nixosModules.common-cpu-intel
-
-      self.modules.nixos.hostsLaptop
-      self.modules.nixos.minimal
-      self.modules.nixos.graphical
-      self.modules.nixos.graphicalGnome
-
       ({config, ...}: {
+        imports = [
+          inputs.nixos-hardware.nixosModules.common-pc-laptop
+          inputs.nixos-hardware.nixosModules.common-pc-ssd
+          inputs.nixos-hardware.nixosModules.common-cpu-intel
+
+          self.modules.nixos.hostsLaptop
+          self.modules.nixos.minimal
+          self.modules.nixos.graphical
+          self.modules.nixos.graphicalGnome
+        ];
         home-manager.users.${config.user.name}.imports = [
           self.modules.homeManager.hostsLaptop
           self.modules.homeManager.minimal

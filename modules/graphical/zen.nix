@@ -74,6 +74,7 @@
           "privacy.trackingprotection.allow_list.convenience.enabled" = true;
           "zen.tabs.show-newtab-vertical" = false;
           "zen.view.show-newtab-button-top" = false;
+          "zen.workspaces.continue-where-left-off" = true;
 
           "browser.contentblocking.category" = "strict";
           "network.http.referer.disallowCrossSiteRelaxingDefault.top_navigation" = true;

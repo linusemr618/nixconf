@@ -5,12 +5,19 @@
 }: {
   flake.nixosConfigurations.iso = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      self.modules.nixos.hostsIso
-      self.modules.nixos.minimal
-      self.modules.nixos.graphical
-      self.modules.nixos.graphicalGnome
+      ({
+        config,
+        modulesPath,
+        ...
+      }: {
+        imports = [
+          (modulesPath + "/installer/cd-dvd/installation-cd-graphical-base.nix")
 
-      ({config, ...}: {
+          self.modules.nixos.hostsIso
+          self.modules.nixos.minimal
+          self.modules.nixos.graphical
+          self.modules.nixos.graphicalGnome
+        ];
         home-manager.users.${config.user.name}.imports = [
           self.modules.homeManager.hostsIso
           self.modules.homeManager.minimal
@@ -24,6 +31,11 @@
     options.host.name = lib.mkOption {
       type = lib.types.str;
       default = "iso";
+    };
+    config = {
+      boot.supportedFilesystems.zfs = lib.mkForce false;
+      isoImage.squashfsCompression = "zstd -Xcompression-level 3";
+      nixpkgs.hostPlatform = "x86_64-linux";
     };
   };
   flake.modules.homeManager.hostsIso = {lib, ...}: {
