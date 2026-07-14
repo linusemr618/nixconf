@@ -4,7 +4,7 @@
     services.displayManager = {
       autoLogin = {
         enable = true;
-        user = "${config.user.name}";
+        user = "${config.custom.user.name}";
       };
     };
   };

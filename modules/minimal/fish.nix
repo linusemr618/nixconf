@@ -37,8 +37,8 @@
         ];
       functions = {
         gu = "git pull && git add . && git commit -m \"update $(date -u --iso-8601=seconds)\" && git push";
-        nu = "nix flake update --flake ${config.flake.location}";
-        nos = "git -C ${config.flake.location} add . && nh os switch";
+        nu = "nix flake update --flake ${config.custom.flake.location}";
+        nos = "git -C ${config.custom.flake.location} add . && nh os switch";
         nc = "nh clean all";
         run = "NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#$argv[1] -- $argv[2..-1]";
         shell = "NIXPKGS_ALLOW_UNFREE=1 nix shell --impure (string replace -r '^' 'nixpkgs#' $argv) -c fish";

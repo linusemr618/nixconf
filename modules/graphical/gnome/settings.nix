@@ -7,6 +7,7 @@
     dconf.settings = with lib.hm.gvariant; {
       "org/gnome/desktop/calendar".show-weekdate = true;
       "org/gnome/desktop/date-time".automatic-timezone = true;
+      "org/gnome/desktop/input-sources".sources = [(mkTuple ["xkb" "de"])];
       "org/gnome/desktop/interface".gtk-enable-primary-paste = true;
       "org/gnome/desktop/notifications".show-in-lock-screen = false;
       "org/gnome/desktop/peripherals/mouse".speed = -0.75;
@@ -42,6 +43,7 @@
         default-folder-viewer = "list-view";
         show-create-link = true;
       };
+      "org/gtk/gtk4/settings/file-chooser".show-hidden = true;
 
       "org/gnome/gnome-system-monitor" = {
         show-whose-processes = "all";

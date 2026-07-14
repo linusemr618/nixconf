@@ -42,7 +42,7 @@
         extraArgs = "--keep-since 2d --keep 10";
         dates = "hourly";
       };
-      flake = "${config.flake.location}";
+      flake = "${config.custom.flake.location}";
     };
   };
 }

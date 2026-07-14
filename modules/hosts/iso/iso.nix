@@ -18,7 +18,7 @@
           self.modules.nixos.graphical
           self.modules.nixos.graphicalGnome
         ];
-        home-manager.users.${config.user.name}.imports = [
+        home-manager.users.${config.custom.user.name}.imports = [
           self.modules.homeManager.hostsIso
           self.modules.homeManager.minimal
           self.modules.homeManager.graphical
@@ -28,20 +28,12 @@
     ];
   };
   flake.modules.nixos.hostsIso = {lib, ...}: {
-    options.host.name = lib.mkOption {
-      type = lib.types.str;
-      default = "iso";
-    };
-    config = {
-      boot.supportedFilesystems.zfs = lib.mkForce false;
-      isoImage.squashfsCompression = "zstd -Xcompression-level 3";
-      nixpkgs.hostPlatform = "x86_64-linux";
-    };
+    custom.host.name = "iso";
+    boot.supportedFilesystems.zfs = lib.mkForce false;
+    isoImage.squashfsCompression = "zstd -Xcompression-level 3";
+    nixpkgs.hostPlatform = "x86_64-linux";
   };
-  flake.modules.homeManager.hostsIso = {lib, ...}: {
-    options.host.name = lib.mkOption {
-      type = lib.types.str;
-      default = "iso";
-    };
+  flake.modules.homeManager.hostsIso = {...}: {
+    custom.host.name = "iso";
   };
 }

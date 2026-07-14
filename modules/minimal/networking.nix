@@ -41,7 +41,7 @@
     };
   in {
     networking = {
-      hostName = "${config.host.name}";
+      hostName = "${config.custom.host.name}";
       networkmanager = {
         enable = true;
         ensureProfiles = {
@@ -98,7 +98,7 @@
                   type = "wireguard";
                   autoconnect = false;
                   interface-name = "WG_Kaffeekanne";
-                  permissions = "user:${config.user.name}:;";
+                  permissions = "user:${config.custom.user.name}:;";
                 };
                 wireguard = {
                   listen-port = 51820;
@@ -132,7 +132,7 @@
                   type = "wireguard";
                   autoconnect = "false";
                   interface-name = "DE_348";
-                  permissions = "user:${config.user.name}:;";
+                  permissions = "user:${config.custom.user.name}:;";
                 };
                 wireguard = {
                   listen-port = 51820;
@@ -163,7 +163,7 @@
                   id = "RWTH";
                   type = "vpn";
                   autoconnect = false;
-                  permissions = "user:${config.user.name}:;";
+                  permissions = "user:${config.custom.user.name}:;";
                 };
                 vpn = {
                   authtype = "password";

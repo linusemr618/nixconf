@@ -1,9 +1,17 @@
 keys:
   - &linus_age age15x3r5c7z9v6fmzqyckv04zv7f62xuk7xf0xyat2kn2udsz8l99dq3wypmr
   - &laptop_ssh age1czsdra4zhheftr6kuwze4rl6jm4z75y9f4hed3ukxn2zwe5gnpjsneger3
+  - &empty age1upzerwrtzzjjr360hll83nzjf5qw545h0h5w60rg49hsy053cc5q6ccv2w
 creation_rules:
-  - path_regex: ^secrets\.yaml$
+  - path_regex: ^secrets/secrets\.yaml$
     key_groups:
       - age:
           - *linus_age
           - *laptop_ssh
+  - path_regex: ^secrets/empty\.yaml$
+    key_groups:
+      - age:
+          - *empty
+stores:
+  yaml:
+    indent: 2

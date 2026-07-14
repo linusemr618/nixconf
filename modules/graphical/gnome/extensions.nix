@@ -12,7 +12,7 @@
       "caffeine"
       "clipboard-indicator"
       #"dash-to-dock"
-      "forge"
+      #"forge"
       "gsconnect"
       #"paperwm"
     ];
@@ -40,7 +40,7 @@
         toggle-shortcut = ["<Super>c"];
       };
 
-      "org/gnome/shell/extensions/gsconnect".name = "${config.host.name}";
+      "org/gnome/shell/extensions/gsconnect".name = "${config.custom.host.name}";
       "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/battery" = {
         full-battery-notification = true;
         send-statistics = true;
@@ -50,15 +50,13 @@
         send-content = true;
       };
       "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/notification".send-notifications = false;
-      "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/runcommand" = {
-        command-list = [
-          (mkDictionaryEntry ["lock" (mkVariant [(mkDictionaryEntry ["name" "Lock"]) (mkDictionaryEntry ["command" "xdg-screensaver lock"])])])
-          (mkDictionaryEntry ["logout" (mkVariant [(mkDictionaryEntry ["name" "Log Out"]) (mkDictionaryEntry ["command" "gnome-session-quit --logout --no-prompt"])])])
-          (mkDictionaryEntry ["poweroff" (mkVariant [(mkDictionaryEntry ["name" "Power Off"]) (mkDictionaryEntry ["command" "systemctl poweroff"])])])
-          (mkDictionaryEntry ["suspend" (mkVariant [(mkDictionaryEntry ["name" "Suspend"]) (mkDictionaryEntry ["command" "systemctl suspend"])])])
-          (mkDictionaryEntry ["8a4c9cfe-2f53-4b9f-9007-e32e52840529" (mkVariant [(mkDictionaryEntry ["name" "Hibernate"]) (mkDictionaryEntry ["command" "systemctl hibernate"])])])
-        ];
-      };
+      "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/runcommand".command-list = [
+        (mkDictionaryEntry ["lock" (mkVariant [(mkDictionaryEntry ["name" "Lock"]) (mkDictionaryEntry ["command" "xdg-screensaver lock"])])])
+        (mkDictionaryEntry ["logout" (mkVariant [(mkDictionaryEntry ["name" "Log Out"]) (mkDictionaryEntry ["command" "gnome-session-quit --logout --no-prompt"])])])
+        (mkDictionaryEntry ["poweroff" (mkVariant [(mkDictionaryEntry ["name" "Power Off"]) (mkDictionaryEntry ["command" "systemctl poweroff"])])])
+        (mkDictionaryEntry ["suspend" (mkVariant [(mkDictionaryEntry ["name" "Suspend"]) (mkDictionaryEntry ["command" "systemctl suspend"])])])
+        (mkDictionaryEntry ["8a4c9cfe-2f53-4b9f-9007-e32e52840529" (mkVariant [(mkDictionaryEntry ["name" "Hibernate"]) (mkDictionaryEntry ["command" "systemctl hibernate"])])])
+      ];
       "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/share".launch-urls = true;
     };
   };
