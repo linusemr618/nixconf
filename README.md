@@ -14,13 +14,13 @@ nix-shell
 
 ### Build and switch to the configuration
 
-With my private age key placed in `~/.config/sops/age/keys.txt`:
+With an authorised host ssh key:
 
 ```bash
 sudo nixos-rebuild switch --flake .#laptop
 ```
 
-Without my private age key:
+Without authorisation (every secret will be "changeme"):
 
 ```bash
 sudo EMPTY_SECRETS=1 nixos-rebuild switch --impure --flake .#laptop
