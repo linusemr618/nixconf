@@ -30,7 +30,7 @@
   flake.modules.nixos.hostsIso = {lib, ...}: {
     custom.host.name = "iso";
     boot.supportedFilesystems.zfs = lib.mkForce false;
-    isoImage.squashfsCompression = "zstd -Xcompression-level 3";
+    isoImage.squashfsCompression = "zstd -Xcompression-level 6";
     nixpkgs.hostPlatform = "x86_64-linux";
   };
   flake.modules.homeManager.hostsIso = {...}: {

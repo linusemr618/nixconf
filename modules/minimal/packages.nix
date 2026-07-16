@@ -30,6 +30,7 @@
       git
       htop
       hping
+      lm_sensors
       net-tools
       nil
       nixd

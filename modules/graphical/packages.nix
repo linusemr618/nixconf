@@ -8,12 +8,10 @@
   flake.modules.homeManager.graphical = {pkgs, ...}: {
     home.packages = with pkgs; [
       dconf-editor
-      fractal
+      #fractal
       gnome-boxes
       gnome-network-displays
       gnome-tweaks
-      jetbrains.pycharm
-      libreoffice
       plex-desktop
       proton-pass
       proton-vpn
