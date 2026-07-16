@@ -61,7 +61,3 @@ EMPTY_SECRETS=1 nix build --impure .#iso
 - [ ] backup solution (restic)
 - [ ] disko
 - [ ] impermanence
-
-```
-
-```
