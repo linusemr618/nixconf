@@ -72,6 +72,7 @@
           "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
           "privacy.history.custom" = false;
           "privacy.trackingprotection.allow_list.convenience.enabled" = true;
+          "zen.tabs.select-recently-used-on-close" = false;
           "zen.tabs.show-newtab-vertical" = false;
           "zen.view.show-newtab-button-top" = false;
           "zen.workspaces.continue-where-left-off" = true;

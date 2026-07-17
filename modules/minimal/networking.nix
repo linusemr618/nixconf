@@ -6,15 +6,15 @@
     ...
   }: let
     wifiNetworks = {
-      "AP23_Main" = ["AP23-Main" "sae"];
-      "ELI" = ["ELI" "sae"];
+      "AP23_Main" = ["AP23-Main" "wpa-psk"];
+      "ELI" = ["ELI" "wpa-psk"];
       "GRUENE" = ["GRUENE" "wpa-psk"];
-      "Kaffeekanne" = ["Kaffeekanne" "sae"];
+      "Kaffeekanne" = ["Kaffeekanne" "wpa-psk"];
       "Pixel_8_Pro" = ["Pixel 8 Pro" "sae"];
-      "VDSt_WLAN" = ["VDSt-WLAN" "sae"];
-      "Vodafone_2085" = ["Vodafone-2085" "sae"];
+      "VDSt_WLAN" = ["VDSt-WLAN" "wpa-psk"];
+      "Vodafone_2085" = ["Vodafone-2085" "wpa-psk"];
       "WLAN_569752" = ["WLAN-569752" "wpa-psk"];
-      "WLAN_770356_EXT2_4G" = ["WLAN-770356_EXT2.4G" "sae"];
+      "WLAN_770356_EXT2_4G" = ["WLAN-770356_EXT2.4G" "wpa-psk"];
     };
     mkWifiProfile = id: values: let
       ssid = builtins.elemAt values 0;
@@ -57,7 +57,7 @@
                 };
                 wifi.ssid = "Kaffeekanne_P";
                 wifi-security = {
-                  key-mgmt = "sae";
+                  key-mgmt = "wpa-psk";
                   psk = "$WIFI_Kaffeekanne_P";
                 };
                 ipv4.method = "auto";

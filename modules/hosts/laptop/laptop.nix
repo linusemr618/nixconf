@@ -21,6 +21,7 @@
           self.modules.homeManager.minimal
           self.modules.homeManager.graphical
           self.modules.homeManager.graphicalGnome
+          self.modules.homeManager.optional
         ];
       })
     ];

@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager.graphical = {...}: {
+  flake.modules.homeManager.optional = {...}: {
     programs.brave = {
       enable = true;
       #defaultSearchProviderEnabled = true;
