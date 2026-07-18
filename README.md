@@ -58,6 +58,6 @@ EMPTY_SECRETS=1 nix build --impure .#iso
 - [x] btrfs snapshots
 - [x] maybe element desktop
 - [x] Librewolf/Zen
+- [x] disko
 - [ ] backup solution (restic)
-- [ ] disko
 - [ ] impermanence
