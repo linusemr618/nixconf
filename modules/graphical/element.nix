@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.graphical = {...}: {
     programs.element-desktop = {
       enable = true;

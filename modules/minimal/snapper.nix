@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.nixos.minimal = {...}: {
     services.snapper = {
       cleanupInterval = "1d";

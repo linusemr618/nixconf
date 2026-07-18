@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.nixos.minimal = {config, ...}: {
     virtualisation = {
       docker.rootless = {

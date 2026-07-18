@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.nixos.graphicalGnome = {pkgs, ...}: {
     services = {
       displayManager.gdm.enable = true;

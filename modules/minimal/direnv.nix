@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.minimal = {...}: {
     programs.direnv = {
       enable = true;

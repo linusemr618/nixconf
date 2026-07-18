@@ -1,5 +1,4 @@
-{
-  # inputs, ...}: {
+{...}: {
   # flake.modules.nixos.graphical = {...}: {
   #   nixpkgs.overlays = [inputs.nix4vscode.overlays.default];
   # };

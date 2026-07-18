@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.nixos.graphicalNiri = {...}: {
     config,
     pkgs,

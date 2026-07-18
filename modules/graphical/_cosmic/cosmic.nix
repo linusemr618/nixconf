@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.nixos.graphicalCosmic = {...}: {
     services = {
       displayManager.gdm.enable = true;

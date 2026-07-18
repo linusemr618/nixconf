@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.minimal = {...}: {
     programs.git = {
       enable = true;

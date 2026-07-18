@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.nixos.graphical = {pkgs, ...}: {
     programs.nix-ld.libraries = with pkgs; [
       libsecret

@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.hostsLaptop = {config, ...}: {
     home.file = {
       ".ssh/id_ed25519.pub".text = ''

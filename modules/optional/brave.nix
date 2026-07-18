@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.optional = {...}: {
     programs.brave = {
       enable = true;

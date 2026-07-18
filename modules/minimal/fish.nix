@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.nixos.minimal = {pkgs, ...}: {
     programs.fish.enable = true;
     programs.bash = {

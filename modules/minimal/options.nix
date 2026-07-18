@@ -26,7 +26,8 @@ let
       };
     };
   };
-in {
-  flake.modules.nixos.minimal = myOptions;
-  flake.modules.homeManager.minimal = myOptions;
-}
+in
+  {...}: {
+    flake.modules.nixos.minimal = myOptions;
+    flake.modules.homeManager.minimal = myOptions;
+  }

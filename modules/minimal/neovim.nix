@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.minimal = {pkgs, ...}: {
     programs.neovim = {
       enable = true;

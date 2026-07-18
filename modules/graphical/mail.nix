@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.graphical = {pkgs, ...}: {
     home.packages = [pkgs.geary];
     services.protonmail-bridge.enable = true;

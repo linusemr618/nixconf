@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.minimal = {pkgs, ...}: {
     programs.tmux = {
       enable = true;

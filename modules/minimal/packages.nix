@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.nixos.minimal = {pkgs, ...}: {
     environment.systemPackages = with pkgs; [
       aircrack-ng

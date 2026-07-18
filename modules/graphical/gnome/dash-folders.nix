@@ -1,4 +1,4 @@
-{
+{...}: {
   flake.modules.homeManager.graphicalGnome = {...}: {
     dconf.settings = {
       "org/gnome/desktop/app-folders" = {
