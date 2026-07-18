@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.minimal = {...}: {
+  flake.modules.nixos.hostsLaptop = {...}: {
     services.snapper = {
       cleanupInterval = "1d";
       persistentTimer = true;
