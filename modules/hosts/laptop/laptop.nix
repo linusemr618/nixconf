@@ -7,10 +7,6 @@
     modules = [
       ({config, ...}: {
         imports = [
-          inputs.nixos-hardware.nixosModules.common-pc-laptop
-          inputs.nixos-hardware.nixosModules.common-pc-ssd
-          inputs.nixos-hardware.nixosModules.common-cpu-intel
-
           self.modules.nixos.hostsLaptop
           self.modules.nixos.minimal
           self.modules.nixos.graphical
@@ -26,23 +22,32 @@
       })
     ];
   };
-  flake.modules.nixos.hostsLaptop = {pkgs, ...}: {
+  flake.modules.nixos.hostsLaptop = {
+    config,
+    lib,
+    modulesPath,
+    ...
+  }: {
     custom.host.name = "laptop";
+    imports = [
+      (modulesPath + "/installer/scan/not-detected.nix")
+      inputs.nixos-hardware.nixosModules.common-pc-laptop
+      inputs.nixos-hardware.nixosModules.common-pc-ssd
+      inputs.nixos-hardware.nixosModules.common-cpu-intel
+    ];
     boot = {
-      resumeDevice = "/dev/mapper/luks-790845fb-5510-436c-9e2b-3abff24f506a";
+      initrd.availableKernelModules = ["xhci_pci" "nvme"];
+      kernelModules = ["kvm-intel"];
+      resumeDevice = "/dev/mapper/crypted";
       kernelParams = ["resume_offset=11168313"];
       zswap.enable = true;
-
-      loader.systemd-boot.enable = true;
-      loader.efi.canTouchEfiVariables = true;
-      kernelPackages = pkgs.linuxPackages_latest;
+      loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+      };
     };
-    swapDevices = [
-      {
-        device = "/swap/swapfile";
-        size = 24 * 1024;
-      }
-    ];
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
   flake.modules.homeManager.hostsLaptop = {...}: {
     custom.host.name = "laptop";

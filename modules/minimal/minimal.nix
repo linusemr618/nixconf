@@ -4,7 +4,7 @@
     pkgs,
     ...
   }: {
-    services.fwupd.enable = true;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
     hardware = {
       enableAllFirmware = true;
       graphics = {
@@ -12,6 +12,7 @@
         enable32Bit = true;
       };
     };
+    services.fwupd.enable = true;
 
     time.timeZone = "Europe/Berlin";
     i18n = {
