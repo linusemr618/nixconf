@@ -1,5 +1,5 @@
 {...}: {
   flake.modules.homeManager.minimal = {pkgs, ...}: {
-    home.packages = with pkgs; [restic];
+    home.packages = [pkgs.restic];
   };
 }

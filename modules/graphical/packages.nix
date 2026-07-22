@@ -1,8 +1,6 @@
 {...}: {
   flake.modules.nixos.graphical = {pkgs, ...}: {
-    environment.systemPackages = with pkgs; [
-      gparted
-    ];
+    environment.systemPackages = [pkgs.gparted];
   };
 
   flake.modules.homeManager.graphical = {pkgs, ...}: {

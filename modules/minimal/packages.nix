@@ -1,16 +1,13 @@
 {...}: {
   flake.modules.nixos.minimal = {pkgs, ...}: {
-    environment.systemPackages = with pkgs; [
-      aircrack-ng
-    ];
+    environment.systemPackages = [pkgs.aircrack-ng];
 
     # programs.appimage = {
     #   enable = true;
     #   binfmt = true;
     #   package = pkgs.appimage-run.override {
-    #     extraPkgs = with pkgs;
-    #       pkgs: [
-    #         libxshmfence
+    #     extraPkgs = pkgs: [
+    #         pkgs.libxshmfence
     #       ];
     #   };
     # };
@@ -21,9 +18,10 @@
     home.packages = with pkgs; [
       alejandra
       android-tools
-      busybox
+      #busybox
       cargo
       devenv
+      disko
       ffmpeg-full
       fh
       file
@@ -32,12 +30,12 @@
       htop
       hping
       lm_sensors
-      #net-tools
+      net-tools
       nil
       nixd
-      #openssl
-      #usbutils
-      #wget
+      unzip
+      usbutils
+      wget
 
       (python3.withPackages (ps: [ps.tkinter]))
     ];

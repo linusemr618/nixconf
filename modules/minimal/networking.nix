@@ -200,7 +200,7 @@
               };
             };
         };
-        plugins = with pkgs; [networkmanager-openconnect];
+        plugins = [pkgs.networkmanager-openconnect];
       };
     };
     sops.secrets."networking/env" = {};

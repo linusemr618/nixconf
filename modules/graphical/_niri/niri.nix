@@ -39,7 +39,10 @@
     systemd.user.services.niri.enableDefaultPath = false;
     xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [xdg-desktop-portal-gtk xdg-desktop-portal-gnome];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
+      ];
     };
   };
 
@@ -47,8 +50,6 @@
     programs = {
       fuzzel.enable = true;
     };
-    home.packages = with pkgs; [
-      kitty
-    ];
+    home.packages = [pkgs.kitty];
   };
 }
