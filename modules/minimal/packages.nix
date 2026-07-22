@@ -21,6 +21,7 @@
     home.packages = with pkgs; [
       alejandra
       android-tools
+      busybox
       cargo
       devenv
       ffmpeg-full
@@ -31,12 +32,12 @@
       htop
       hping
       lm_sensors
-      net-tools
+      #net-tools
       nil
       nixd
       #openssl
-      usbutils
-      wget
+      #usbutils
+      #wget
 
       (python3.withPackages (ps: [ps.tkinter]))
     ];

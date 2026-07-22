@@ -1,11 +1,11 @@
 let
-  myOptions = {
+  myVar = {
     config,
     lib,
     ...
   }: {
     options = with lib; {
-      custom = {
+      var = {
         host.name = lib.mkOption {
           type = lib.types.str;
         };
@@ -21,13 +21,13 @@ let
         };
         flake.location = mkOption {
           type = types.str;
-          default = "/home/${config.custom.user.name}/nixconf";
+          default = "/home/${config.var.user.name}/nixconf";
         };
       };
     };
   };
 in
   {...}: {
-    flake.modules.nixos.minimal = myOptions;
-    flake.modules.homeManager.minimal = myOptions;
+    flake.modules.nixos.minimal = myVar;
+    flake.modules.homeManager.minimal = myVar;
   }

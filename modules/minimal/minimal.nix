@@ -67,10 +67,10 @@
     system.stateVersion = "26.05";
 
     imports = [inputs.home-manager.nixosModules.home-manager];
-    users.users.${config.custom.user.name} = {
+    users.users.${config.var.user.name} = {
       hashedPasswordFile = config.sops.secrets."user/password".path;
       isNormalUser = true;
-      description = config.custom.user.description;
+      description = config.var.user.description;
       extraGroups = ["networkmanager" "wheel"];
       linger = true;
     };
@@ -84,8 +84,8 @@
 
   flake.modules.homeManager.minimal = {config, ...}: {
     home = {
-      username = config.custom.user.name;
-      homeDirectory = "/home/${config.custom.user.name}";
+      username = config.var.user.name;
+      homeDirectory = "/home/${config.var.user.name}";
       stateVersion = "26.05";
     };
     systemd.user.startServices = "sd-switch";

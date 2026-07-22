@@ -11,6 +11,6 @@
       };
       spiceUSBRedirection.enable = true;
     };
-    users.users.${config.custom.user.name}.extraGroups = ["libvirtd"];
+    users.users.${config.var.user.name}.extraGroups = ["libvirtd"];
   };
 }

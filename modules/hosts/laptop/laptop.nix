@@ -12,7 +12,7 @@
           self.modules.nixos.graphical
           self.modules.nixos.graphicalGnome
         ];
-        home-manager.users.${config.custom.user.name}.imports = [
+        home-manager.users.${config.var.user.name}.imports = [
           self.modules.homeManager.hostsLaptop
           self.modules.homeManager.minimal
           self.modules.homeManager.graphical
@@ -28,7 +28,7 @@
     modulesPath,
     ...
   }: {
-    custom.host.name = "laptop";
+    var.host.name = "laptop";
     imports = [
       (modulesPath + "/installer/scan/not-detected.nix")
       inputs.nixos-hardware.nixosModules.common-pc-laptop
@@ -50,6 +50,6 @@
     hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
   flake.modules.homeManager.hostsLaptop = {...}: {
-    custom.host.name = "laptop";
+    var.host.name = "laptop";
   };
 }

@@ -27,7 +27,7 @@
         settings = {
           default_session = {
             command = "${config.programs.niri.package}/bin/niri-session";
-            user = "${config.custom.user.name}";
+            user = "${config.var.user.name}";
           };
         };
       };

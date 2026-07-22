@@ -40,7 +40,7 @@
         toggle-shortcut = ["<Super>c"];
       };
 
-      "org/gnome/shell/extensions/gsconnect".name = "${config.custom.host.name}";
+      "org/gnome/shell/extensions/gsconnect".name = "${config.var.host.name}";
       "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/battery" = {
         full-battery-notification = true;
         send-statistics = true;
