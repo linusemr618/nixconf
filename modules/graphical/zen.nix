@@ -69,6 +69,7 @@
           "browser.search.suggest.enabled" = true;
           "browser.search.suggest.enabled.private" = true;
           "browser.translations.neverTranslateLanguages" = "de";
+          "browser.urlbar.showSearchSuggestionsFirst" = false;
           "dom.security.https_only_mode" = true;
           "network.trr.mode" = 3;
           "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
