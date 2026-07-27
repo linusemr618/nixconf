@@ -1,13 +1,13 @@
 {...}: {
-  flake.modules.homeManager.minimal = {pkgs, ...}: {
+  flake.modules.homeManager.minimal = {...}: {
     programs.neovim = {
       enable = true;
-      plugins = with pkgs.vimPlugins; [
-        nvim-colorizer-lua
-        nvim-tree-lua
-        nvim-treesitter.withAllGrammars
-        vim-startify
-      ];
+      # plugins = with pkgs.vimPlugins; [
+      #   nvim-colorizer-lua
+      #   nvim-tree-lua
+      #   nvim-treesitter.withAllGrammars
+      #   vim-startify
+      # ];
       viAlias = true;
       vimAlias = true;
     };

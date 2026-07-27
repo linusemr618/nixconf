@@ -35,7 +35,7 @@
   flake.modules.homeManager.hostsIso = {...}: {
     var.host.name = "iso";
   };
-  perSystem = {
+  perSystem = {...}: {
     packages.iso = self.nixosConfigurations.iso.config.system.build.isoImage;
   };
 }
