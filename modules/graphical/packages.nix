@@ -5,6 +5,7 @@
 
   flake.modules.homeManager.graphical = {pkgs, ...}: {
     home.packages = with pkgs; [
+      (callPackage ../../packages/claude.nix {})
       dconf-editor
       #fractal
       gnome-boxes

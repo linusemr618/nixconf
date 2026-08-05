@@ -11,13 +11,17 @@
     users.users.${config.var.user.name}.shell = pkgs.zsh;
   };
 
-  flake.modules.homeManager.minimal = {
-    config,
-    pkgs,
-    ...
-  }: {
+  flake.modules.homeManager.minimal = {config, ...}: {
     programs = {
+      fzf = {
+        enable = true;
+        enableZshIntegration = true;
+      };
       starship = {
+        enable = true;
+        enableZshIntegration = true;
+      };
+      zoxide = {
         enable = true;
         enableZshIntegration = true;
       };
@@ -42,14 +46,13 @@
 
         oh-my-zsh = {
           enable = true;
-          theme = ""; # starship draws the prompt
+          #theme = "agnoster";
           plugins = [
-            "git"
-            "sudo"
-            "history-substring-search"
             "colored-man-pages"
-            #"command-not-found"
             "extract"
+            "git"
+            "history-substring-search"
+            "sudo"
           ];
         };
 
@@ -61,19 +64,18 @@
           update = "nu && nos";
         };
 
-        # initContent = ''
-        #   run() {
-        #     NIXPKGS_ALLOW_UNFREE=1 nix run --impure "nixpkgs#$1" -- "''${@:2}"
-        #   }
-
-        #   shell() {
-        #     local args=()
-        #     for p in "$@"; do
-        #       args+=("nixpkgs#$p")
-        #     done
-        #     NIXPKGS_ALLOW_UNFREE=1 nix shell --impure "''${args[@]}" -c zsh
-        #   }
-        # '';
+        initContent = ''
+          run() {
+            NIXPKGS_ALLOW_UNFREE=1 nix run --impure "nixpkgs#$1" -- "''${@:2}"
+          }
+          shell() {
+            local pkgs=()
+            for p in "$@"; do
+              pkgs+=("nixpkgs#$p")
+            done
+            NIXPKGS_ALLOW_UNFREE=1 nix shell --impure "''${pkgs[@]}" -c zsh
+          }
+        '';
       };
     };
   };

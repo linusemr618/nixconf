@@ -10,7 +10,10 @@
           //   "expr": "(builtins.getFlake (builtins.toString ./.)).currentSystem.options",
           // },
           "home-manager": {
-            "expr": "(let f = builtins.getFlake (builtins.toString ./.); in f.nixosConfigurations.${builtins.head (builtins.attrNames f.nixosConfigurations)}.options.home-manager.users.type.getSubOptions [])",
+            "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.laptop.options.home-manager.users.type.getSubOptions []",
+          },
+          "zen": {
+            "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.laptop.options.home-manager.users.type.getSubOptions []",
           },
         },
       },
