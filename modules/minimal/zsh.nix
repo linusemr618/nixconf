@@ -6,7 +6,7 @@
   }: {
     programs.zsh = {
       enable = true;
-      enableBashCompletion = true;
+      #enableBashCompletion = true;
     };
     users.users.${config.var.user.name}.shell = pkgs.zsh;
   };
@@ -30,7 +30,11 @@
         autocd = true;
         autosuggestion.enable = true;
         enableVteIntegration = true;
-        #historySubstringSearch.enable = true;
+        historySubstringSearch = {
+          enable = true;
+          searchDownKey = "$terminfo[kcud1]";
+          searchUpKey = "$terminfo[kcuu1]";
+        };
         fastSyntaxHighlighting.enable = true;
         zsh-abbr.enable = true;
         #zprof.enable = true;
@@ -51,7 +55,6 @@
             "colored-man-pages"
             "extract"
             "git"
-            "history-substring-search"
             "sudo"
           ];
         };

@@ -18,7 +18,6 @@
     home.packages = with pkgs; [
       alejandra
       android-tools
-      #busybox
       cargo
       devenv
       disko
@@ -32,7 +31,7 @@
       lm_sensors
       net-tools
       nil
-      nixd
+      openssh
       unzip
       usbutils
       wget

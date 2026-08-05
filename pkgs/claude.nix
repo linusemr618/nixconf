@@ -146,9 +146,17 @@ stdenv.mkDerivation rec {
   #   2. Run unsandboxed (what this derivation does by default) via --no-sandbox.
   #      Same tradeoff most nixpkgs Electron-from-.deb packages (vscode,
   #      slack, discord, ...) make when no security wrapper is configured.
+  # Chromium's OSCrypt dlopen()s libsecret-1.so.0 by soname at runtime
+  # rather than linking it, so autoPatchelf (which only patches declared ELF
+  # NEEDED entries) never adds it to claude-desktop's RPATH. Without the
+  # explicit LD_LIBRARY_PATH prefix below, the dlopen silently fails and
+  # Claude falls back to an unencrypted/unpersisted credential store,
+  # surfacing as "Install and unlock a system keyring" even when one is
+  # running and unlocked.
   postFixup = ''
     makeWrapper $out/lib/claude-desktop/claude-desktop $out/bin/claude-desktop \
       --add-flags "--no-sandbox" \
+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libsecret]}" \
       "''${gappsWrapperArgs[@]}"
   '';
 

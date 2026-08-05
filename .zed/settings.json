@@ -12,9 +12,6 @@
           "home-manager": {
             "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.laptop.options.home-manager.users.type.getSubOptions []",
           },
-          "zen": {
-            "expr": "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.laptop.options.home-manager.users.type.getSubOptions []",
-          },
         },
       },
     },

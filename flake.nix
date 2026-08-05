@@ -1,13 +1,13 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    disko = {
-      url = "github:nix-community/disko";
+    home-manager = {
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
-    home-manager = {
-      url = "github:nix-community/home-manager";
+    disko = {
+      url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:denful/import-tree";
@@ -45,9 +45,5 @@
     extra-trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
   };
 
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree [
-      ./flake
-      ./modules
-    ]);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);
 }

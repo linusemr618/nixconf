@@ -1,11 +1,11 @@
-{...}: {
+{self, ...}: {
   flake.modules.nixos.graphical = {pkgs, ...}: {
     environment.systemPackages = [pkgs.gparted];
   };
 
   flake.modules.homeManager.graphical = {pkgs, ...}: {
     home.packages = with pkgs; [
-      (callPackage ../../packages/claude.nix {})
+      self.packages.${pkgs.stdenv.hostPlatform.system}.claude
       dconf-editor
       #fractal
       gnome-boxes
