@@ -1,4 +1,4 @@
-{...}: {
+{self, ...}: {
   flake.modules.nixos.minimal = {pkgs, ...}: {
     environment.systemPackages = [pkgs.aircrack-ng];
 
@@ -35,7 +35,7 @@
       unzip
       usbutils
       wget
-      #self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
+      self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
       (python3.withPackages (ps: [ps.tkinter]))
     ];
   };
