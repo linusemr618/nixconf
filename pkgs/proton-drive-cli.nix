@@ -6,7 +6,6 @@
   writableTmpDirAsHomeHook,
   makeWrapper,
   libsecret,
-  glib,
 }: let
   version = "0.7.0";
   jsSdkVersion = "0.20.0"; # SDK version at cli/v${version}, see client/js
@@ -127,9 +126,11 @@ in
 
       install -Dm755 cli/release/proton-drive $out/bin/proton-drive
       # Bun's runtime dlopens libsecret at call time for `Bun.secrets`
-      # (used for the default `keychain` credentials store).
+      # (used for the default `keychain` credentials store). libsecret's
+      # own rpath already resolves its glib dependency, so it doesn't need
+      # to be repeated here.
       wrapProgram $out/bin/proton-drive \
-        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libsecret glib]}
+        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libsecret]}
 
       runHook postInstall
     '';

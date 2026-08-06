@@ -1,4 +1,4 @@
-{self, ...}: {
+{...}: {
   flake.modules.nixos.graphical = {pkgs, ...}: {
     environment.systemPackages = [pkgs.gparted];
   };
@@ -16,7 +16,7 @@
       spotify
       sqlitebrowser
       vlc
-      self.packages.${pkgs.stdenv.hostPlatform.system}.claude
+      #self.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
     ];
 
     #xdg.autostart.entries = ["${pkgs.proton-vpn}/share/applications/proton.vpn.app.gtk.desktop"];

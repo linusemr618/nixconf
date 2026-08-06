@@ -33,11 +33,9 @@
   libXfixes,
   libXrandr,
   libcap_ng,
-  libdrm,
   libnotify,
   libseccomp,
   libsecret,
-  libuuid,
   libxcb,
   libxkbcommon,
   mesa,
@@ -76,11 +74,9 @@ stdenv.mkDerivation rec {
     glib
     gtk3
     libcap_ng # for the bundled virtiofsd helper (cowork/VM feature)
-    libdrm
     libnotify
     libseccomp # for the bundled virtiofsd helper (cowork/VM feature)
     libsecret
-    libuuid
     mesa # provides libgbm, libEGL, libGLESv2
     nspr
     nss
@@ -110,10 +106,6 @@ stdenv.mkDerivation rec {
 
   dontConfigure = true;
   dontBuild = true;
-
-  # autoPatchelfHook can't see libvulkan.so.1 / libvk_swiftshader.so shipped
-  # alongside the binary unless they're on its search path.
-  appDir = "$out/lib/claude-desktop";
 
   installPhase = ''
     runHook preInstall
@@ -152,18 +144,14 @@ stdenv.mkDerivation rec {
   # explicit LD_LIBRARY_PATH prefix below, the dlopen silently fails and
   # Claude falls back to an unencrypted/unpersisted credential store,
   # surfacing as "Install and unlock a system keyring" even when one is
-  # running and unlocked.
+  # running and unlocked. (libsecret's own rpath already resolves its glib
+  # dependency, so glib doesn't need to be repeated here.)
   postFixup = ''
     makeWrapper $out/lib/claude-desktop/claude-desktop $out/bin/claude-desktop \
       --add-flags "--no-sandbox" \
-      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libsecret glib]}" \
+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libsecret]}" \
       "''${gappsWrapperArgs[@]}"
   '';
-
-  # chrome-sandbox itself is a helper binary, not the app; keep it out of
-  # autoPatchelf's "must find libs for every ELF" pass — but leave it in
-  # place in $out/lib in case someone wires up a security wrapper as above.
-  autoPatchelfIgnoreMissingDeps = ["libvulkan.so.1"];
 
   meta = with lib; {
     description = "Desktop application for Claude.ai";
