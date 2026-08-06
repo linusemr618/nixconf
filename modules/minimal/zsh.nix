@@ -4,10 +4,7 @@
     pkgs,
     ...
   }: {
-    programs.zsh = {
-      enable = true;
-      #enableBashCompletion = true;
-    };
+    programs.zsh.enable = true;
     users.users.${config.var.user.name}.shell = pkgs.zsh;
   };
 
@@ -35,8 +32,8 @@
           searchDownKey = "$terminfo[kcud1]";
           searchUpKey = "$terminfo[kcuu1]";
         };
-        fastSyntaxHighlighting.enable = true;
-        zsh-abbr.enable = true;
+        syntaxHighlighting.enable = true;
+        #zsh-abbr.enable = true;
         #zprof.enable = true;
 
         history = {
@@ -68,9 +65,7 @@
         };
 
         initContent = ''
-          run() {
-            NIXPKGS_ALLOW_UNFREE=1 nix run --impure "nixpkgs#$1" -- "''${@:2}"
-          }
+          run() { NIXPKGS_ALLOW_UNFREE=1 nix run --impure "nixpkgs#$1" -- "''${@:2}" }
           shell() {
             local pkgs=()
             for p in "$@"; do
