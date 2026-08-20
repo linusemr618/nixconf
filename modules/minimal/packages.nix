@@ -11,7 +11,7 @@
     #       ];
     #   };
     # };
-    # services.flatpak.enable = true;
+    services.flatpak.enable = true;
   };
 
   flake.modules.homeManager.minimal = {pkgs, ...}: {

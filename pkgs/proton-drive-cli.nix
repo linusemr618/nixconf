@@ -6,6 +6,7 @@
   writableTmpDirAsHomeHook,
   makeWrapper,
   libsecret,
+  glib,
 }: let
   version = "0.7.0";
   jsSdkVersion = "0.20.0"; # SDK version at cli/v${version}, see client/js
@@ -130,7 +131,7 @@ in
       # own rpath already resolves its glib dependency, so it doesn't need
       # to be repeated here.
       wrapProgram $out/bin/proton-drive \
-        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libsecret]}
+        --prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libsecret glib]}
 
       runHook postInstall
     '';

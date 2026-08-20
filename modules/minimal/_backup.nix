@@ -8,19 +8,19 @@
     systemd.user = {
       services.proton-backup = {
         Unit = {
-          Description = "Daily Backup to Proton Drive via rclone";
+          Description = "Proton Drive backup";
         };
         Service = {
           Type = "oneshot";
-          ExecStart = "${pkgs.rclone}/bin/rclone sync /home/${config.var.user.name}/Documents proton:BackupFolder -v";
+          ExecStart = "${pkgs.rclone}/bin/rclone sync /home/${config.var.user.name}/Documents protondrive:BackupFolder -v";
         };
       };
       timers.proton-backup = {
         Unit = {
-          Description = "Timer to run Proton Drive backup daily";
+          Description = "Run Proton Drive backup daily";
         };
         Timer = {
-          OnCalendar = "*-*-* 01:00:00"; # Runs at 3 AM daily
+          OnCalendar = "*-*-* 01:00:00";
           Persistent = true;
         };
         Install = {

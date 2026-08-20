@@ -8,6 +8,7 @@
       dconf-editor
       #fractal
       gnome-boxes
+      gnome-firmware
       gnome-network-displays
       gnome-tweaks
       plex-desktop

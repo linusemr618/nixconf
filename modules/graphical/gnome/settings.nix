@@ -6,6 +6,7 @@
   }: {
     dconf.settings = with lib.hm.gvariant; {
       "org/gnome/desktop/calendar".show-weekdate = true;
+      "org/gnome/desktop/datetime".automatic-timezone = true;
       "org/gnome/desktop/date-time".automatic-timezone = true;
       "org/gnome/desktop/input-sources".sources = [(mkTuple ["xkb" "de"])];
       "org/gnome/desktop/interface".gtk-enable-primary-paste = true;
@@ -78,13 +79,13 @@
           [Account account_1779291630_0]
           Provider=owncloud
           Identity=linusemmerich
-          PresentationIdentity=linusemmerich@cloud.kaffeekanne.xyz
-          Uri=https://cloud.kaffeekanne.xyz:443/remote.php/webdav/
+          PresentationIdentity=linusemmerich@cloud.kaffeekanne.org
+          Uri=https://cloud.kaffeekanne.org:443/remote.php/webdav/
           FilesEnabled=true
           CalendarEnabled=true
-          CalDavUri=https://cloud.kaffeekanne.xyz:443/remote.php/dav/
+          CalDavUri=https://cloud.kaffeekanne.org:443/remote.php/dav/
           ContactsEnabled=true
-          CardDavUri=https://cloud.kaffeekanne.xyz:443/remote.php/dav/
+          CardDavUri=https://cloud.kaffeekanne.org:443/remote.php/dav/
           AcceptSslErrors=false
 
           [Account account_1779555501_0]
