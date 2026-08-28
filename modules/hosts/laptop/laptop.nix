@@ -36,10 +36,11 @@
       inputs.nixos-hardware.nixosModules.common-cpu-intel
     ];
     boot = {
+      #binfmt.emulatedSystems = ["aarch64-linux"];
       initrd.availableKernelModules = ["xhci_pci" "nvme"];
       kernelModules = ["kvm-intel"];
-      resumeDevice = "/dev/mapper/crypted";
       kernelParams = ["resume_offset=11168313"];
+      resumeDevice = "/dev/mapper/crypted";
       zswap.enable = true;
       loader = {
         systemd-boot.enable = true;

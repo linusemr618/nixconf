@@ -73,8 +73,8 @@
           "browser.urlbar.showSearchSuggestionsFirst" = false;
           "dom.security.https_only_mode" = true;
           "intl.accept_languages" = "en-us,en-gb,en,de-de,de";
-          "network.trr.mode" = 3;
-          "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
+          #"network.trr.mode" = 3;
+          #"network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
           "privacy.history.custom" = false;
           "privacy.trackingprotection.allow_list.convenience.enabled" = true;
           #"zen.tabs.select-recently-used-on-close" = false;

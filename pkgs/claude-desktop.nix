@@ -149,7 +149,7 @@ stdenv.mkDerivation rec {
   postFixup = ''
     makeWrapper $out/lib/claude-desktop/claude-desktop $out/bin/claude-desktop \
       --add-flags "--no-sandbox" \
-      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libsecret]}" \
+      --prefix LD_LIBRARY_PATH : "${lib.makeLibraryPath [libsecret glib]}" \
       "''${gappsWrapperArgs[@]}"
   '';
 
