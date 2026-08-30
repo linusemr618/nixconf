@@ -73,6 +73,7 @@
         "gnome/settings/proton_mail" = {};
         "gnome/settings/rwth_login" = {};
         "gnome/settings/rwth_mail" = {};
+        "gnome/settings/ucd_mail" = {};
       };
       templates."accounts.conf" = {
         content = ''
@@ -149,6 +150,14 @@
           ContactsEnabled=true
           CardDavUri=https://wolke.netzbegruenung.de:443/remote.php/dav/
           AcceptSslErrors=false
+
+          [Account account_1788127109_0]
+          Provider=google
+          Identity=${config.sops.placeholder."gnome/settings/ucd_mail"}
+          PresentationIdentity=${config.sops.placeholder."gnome/settings/ucd_mail"}
+          MailEnabled=true
+          CalendarEnabled=true
+          ContactsEnabled=true
         '';
         path = "/home/${config.var.user.name}/.config/goa-1.0/accounts.conf";
       };
