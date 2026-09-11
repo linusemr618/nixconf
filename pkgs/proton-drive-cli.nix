@@ -11,12 +11,13 @@
   glib,
 }: let
   # visit https://github.com/ProtonDriveApps/sdk/tags to find the versions and hashes
-  jsVersion = "0.21.0"; # tag js/v${jsVersion}; change for updates
-  commitHash = "5491f2e"; # short hash of tag cli/v${version}; change for updates
+  jsVersion = "0.21.0"; # tag js/v${jsVersion}; CHANGEME for updates
+  commitHash = "5491f2e"; # short hash of tag cli/v${version}; CHANGEME for updates
+  bunAddPkgs = "'@xmldom/xmldom@^0.9.10' 'exifreader@^4.39.1'"; # optionalDependencies in client/js/package.json; CHANGEME for updates
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "proton-drive-cli";
-    version = "0.8.0"; # tag cli/v${version}; change for updates
+    version = "0.8.0"; # tag cli/v${version}; CHANGEME for updates
 
     src = fetchFromGitHub {
       owner = "ProtonDriveApps";
@@ -38,32 +39,18 @@ in
         runHook preBuild
         export BUN_INSTALL_CACHE_DIR=$(mktemp -d) # keeps the outputHash stable
         cd cli
-        bun install --frozen-lockfile --ignore-scripts --no-progress --production
-        cd ../client/js
-        bun install --frozen-lockfile --ignore-scripts --no-progress --production
-        cd ../../incubating/account/js
-        bun install --frozen-lockfile --ignore-scripts --no-progress --production
-        cd ../../../
+        bun install --force --frozen-lockfile --ignore-scripts --no-progress --production
+        bun add --force --no-save --ignore-scripts --no-progress --omit=dev ${bunAddPkgs}
         runHook postBuild
       '';
       installPhase = ''
         runHook preInstall
-        mkdir -p $out/cli $out/client/js $out/incubating/account/js
-        cp -R cli/node_modules $out/cli/
-        cp -R client/js/node_modules $out/client/js/
-        cp -R incubating/account/js/node_modules $out/incubating/account/js/
+        mkdir -p $out
+        cp -R node_modules $out/
         runHook postInstall
       '';
       outputHashMode = "recursive";
-      outputHash =
-        {
-          x86_64-linux = "sha256-E6xm0awu5KGH3DTQX/f4jfTKGYXdsseiTz8qU0z+o34=";
-          aarch64-linux = "sha256-Yan1GBe8qZmzp0OB0Bsxlm1r1bnc1WcbnK0SLWMaS9E=";
-        }
-      .${
-          stdenv.hostPlatform.system
-        }
-        or (throw "${finalAttrs.pname}: Unsupported platform ${stdenv.hostPlatform.system}");
+      outputHash = "sha256-82OihPTmvR895ume/hyMl8EewWj3gySKvGVTpiLetsg=";
     };
 
     strictDeps = true;
@@ -83,9 +70,9 @@ in
 
     configurePhase = ''
       runHook preConfigure
-      cp -R ${finalAttrs.passthru.nodeModules}/cli/node_modules cli/
-      cp -R ${finalAttrs.passthru.nodeModules}/client/js/node_modules client/js/
-      cp -R ${finalAttrs.passthru.nodeModules}/incubating/account/js/node_modules incubating/account/js
+      cp -R ${finalAttrs.passthru.nodeModules}/node_modules cli/node_modules
+      ln -s "$PWD/cli/node_modules" client/js/node_modules
+      ln -s "$PWD/cli/node_modules" incubating/account/js/node_modules
       runHook postConfigure
     '';
 

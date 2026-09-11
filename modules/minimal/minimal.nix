@@ -14,7 +14,7 @@
     };
     services.fwupd.enable = true;
 
-    time.timeZone = "Europe/Berlin";
+    time.timeZone = "Europe/Dublin";
     i18n = {
       defaultLocale = "en_US.UTF-8";
       extraLocaleSettings = {

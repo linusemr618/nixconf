@@ -36,7 +36,7 @@
       inputs.nixos-hardware.nixosModules.common-cpu-intel
     ];
     boot = {
-      #binfmt.emulatedSystems = ["aarch64-linux"];
+      binfmt.emulatedSystems = ["aarch64-linux"];
       initrd.availableKernelModules = ["xhci_pci" "nvme"];
       kernelModules = ["kvm-intel"];
       kernelParams = ["resume_offset=11168313"];
