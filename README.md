@@ -59,5 +59,6 @@ EMPTY_SECRETS=1 nix build --impure .#iso
 - [x] maybe element desktop
 - [x] Librewolf/Zen
 - [x] disko
+- [x] fix vpns
 - [ ] backup solution (restic or proton rclone)
 - [ ] impermanence

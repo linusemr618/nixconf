@@ -40,10 +40,15 @@
       };
     };
   in {
+    sops.secrets."networking/env" = {};
     networking = {
       hostName = "${config.var.host.name}";
       networkmanager = {
         enable = true;
+        plugins = with pkgs; [
+          networkmanager-libreswan
+          networkmanager-openconnect
+        ];
         ensureProfiles = {
           environmentFiles = [config.sops.secrets."networking/env".path];
           profiles =
@@ -92,23 +97,51 @@
                 };
               };
 
-              WG_Kaffeekanne = {
+              Kaffeekanne_IPSEC = {
                 connection = {
-                  id = "WG_Kaffeekanne";
+                  id = "Kaffeekanne_IPSEC";
+                  type = "vpn";
+                  autoconnect = false;
+                };
+                vpn = {
+                  "IKE DH Group" = "dh2";
+                  "IPSec ID" = "$VPN_Kaffeekanne_IPSEC_ID";
+                  "IPSec gateway" = "$VPN_Kaffeekanne_IPSEC_GATEWAY";
+                  "IPSec secret-flags" = 1;
+                  "Local Port" = 0;
+                  "NAT Traversal Mode" = "natt";
+                  "Perfect Forward Secrecy" = "server";
+                  Vendor = "cisco";
+                  "Xauth password-flags" = 1;
+                  "Xauth username" = "$VPN_Kaffeekanne_IPSEC_ID";
+                  "ipsec-secret-type" = "save";
+                  "xauth-password-type" = "save";
+                  "service-type" = "org.freedesktop.NetworkManager.vpnc";
+                };
+                ipv4.method = "auto";
+                ipv6 = {
+                  addr-gen-mode = "default";
+                  method = "auto";
+                };
+              };
+
+              Kaffeekanne_WG = {
+                connection = {
+                  id = "Kaffeekanne_WG";
                   type = "wireguard";
                   autoconnect = false;
-                  interface-name = "WG_Kaffeekanne";
+                  interface-name = "Kaffeekanne_WG";
                   permissions = "user:${config.var.user.name}:;";
                 };
                 wireguard = {
                   listen-port = 51820;
-                  private-key = "$VPN_WG_Kaffeekanne_PRIVATE_KEY";
+                  private-key = "$VPN_Kaffeekanne_WG_PRIVATE_KEY";
                 };
                 "wireguard-peer.JW/FlZp2O05ragkAoFD/h6TXaw8h1hFhSI0USUEWSkQ=" = {
-                  endpoint = "$VPN_WG_Kaffeekanne_ENDPOINT";
+                  endpoint = "$VPN_Kaffeekanne_WG_ENDPOINT";
                   persistent-keepalive = 25;
                   allowed-ips = "192.168.69.0/24;0.0.0.0/0;fd9c:b5fd:70cf::/64;::/0;";
-                  preshared-key = "$VPN_WG_Kaffeekanne_PRESHARED_KEY";
+                  preshared-key = "$VPN_Kaffeekanne_WG_PRESHARED_KEY";
                   preshared-key-flags = 0;
                 };
                 ipv4 = {
@@ -163,7 +196,6 @@
                   id = "RWTH";
                   type = "vpn";
                   autoconnect = false;
-                  permissions = "user:${config.var.user.name}:;";
                 };
                 vpn = {
                   authtype = "password";
@@ -200,9 +232,7 @@
               };
             };
         };
-        plugins = [pkgs.networkmanager-openconnect];
       };
     };
-    sops.secrets."networking/env" = {};
   };
 }
