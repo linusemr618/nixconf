@@ -14,13 +14,16 @@
       #mutableUserSettings = false;
       userSettings = {
         agent.dock = "right";
-        agent_servers.github-copilot-cli.type = "registry";
+        agent_servers.claude-acp.type = "registry";
         auto_install_extensions.nix = true;
         autosave = "on_focus_change";
         base_keymap = "VSCode";
         buffer_font_size = 15;
         collaboration_panel.dock = "left";
-        edit_predictions.provider = "copilot";
+        edit_predictions = {
+          allow_data_collection = "no";
+          provider = "copilot";
+        };
         format_on_save = "off";
         git_panel.dock = "left";
         hour_format = "hour24";

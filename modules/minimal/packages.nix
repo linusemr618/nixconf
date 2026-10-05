@@ -18,11 +18,9 @@
     home.packages = with pkgs; [
       alejandra
       android-tools
-      cargo
       devenv
       disko
       ffmpeg-full
-      fh
       file
       gcc
       git
@@ -32,6 +30,7 @@
       man-pages
       net-tools
       nil
+      nixfmt
       openssh
       unzip
       usbutils
