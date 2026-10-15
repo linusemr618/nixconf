@@ -17,7 +17,7 @@
         };
         search = {
           force = true;
-          default = "startpage";
+          default = "duckduckgo";
           engines = {
             nixos-options = {
               name = "NixOS Options";
@@ -38,7 +38,7 @@
               name = "Startpage";
               urls = [
                 {
-                  method = "POST";
+                  method = "GET";
                   template = "https://www.startpage.com/sp/search";
                   params = [
                     {

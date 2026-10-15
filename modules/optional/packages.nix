@@ -3,6 +3,8 @@
     home.packages = with pkgs; [
       jetbrains.pycharm
       libreoffice
+      wineWow64Packages.waylandFull
+      winetricks
     ];
   };
 }

@@ -18,7 +18,7 @@
     formatter = pkgs.alejandra;
     packages = {
       claude-desktop = pkgs.callPackage ../pkgs/claude-desktop/claude-desktop.nix {};
-      proton-drive-cli = pkgs.callPackage ../pkgs/proton-drive-cli/proton-drive-cli.nix {};
+      proton-drive-cli = pkgs.callPackage ../pkgs/proton-drive-cli/package.nix {};
       iso = self.nixosConfigurations.iso.config.system.build.isoImage;
     };
   };
