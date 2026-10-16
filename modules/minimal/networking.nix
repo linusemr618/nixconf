@@ -46,7 +46,6 @@
       networkmanager = {
         enable = true;
         plugins = with pkgs; [
-          networkmanager-libreswan
           networkmanager-openconnect
         ];
         ensureProfiles = {
@@ -89,34 +88,6 @@
                   eap = "pwd";
                   identity = "$WIFI_eduroam_IDENTITY";
                   password = "$WIFI_eduroam_PASSWORD";
-                };
-                ipv4.method = "auto";
-                ipv6 = {
-                  addr-gen-mode = "default";
-                  method = "auto";
-                };
-              };
-
-              Kaffeekanne_IPSEC = {
-                connection = {
-                  id = "Kaffeekanne_IPSEC";
-                  type = "vpn";
-                  autoconnect = false;
-                };
-                vpn = {
-                  "IKE DH Group" = "dh2";
-                  "IPSec ID" = "$VPN_Kaffeekanne_IPSEC_ID";
-                  "IPSec gateway" = "$VPN_Kaffeekanne_IPSEC_GATEWAY";
-                  "IPSec secret-flags" = 1;
-                  "Local Port" = 0;
-                  "NAT Traversal Mode" = "natt";
-                  "Perfect Forward Secrecy" = "server";
-                  Vendor = "cisco";
-                  "Xauth password-flags" = 1;
-                  "Xauth username" = "$VPN_Kaffeekanne_IPSEC_ID";
-                  "ipsec-secret-type" = "save";
-                  "xauth-password-type" = "save";
-                  "service-type" = "org.freedesktop.NetworkManager.vpnc";
                 };
                 ipv4.method = "auto";
                 ipv6 = {
