@@ -45,11 +45,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792000010,
-        "narHash": "sha256-4jtkwQlReQdXsKJJfB9yT7nIf0TlwgZOk2XtxjUgDS8=",
+        "lastModified": 1792098797,
+        "narHash": "sha256-u4DIIZgznEGzByxXrxWCXK19VcMtTBmi/M9gZ7Jk9bM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "5a9d300bd619c03857521b50c8877a19dbad7078",
+        "rev": "640725978b99076e18e069f6e7d2959124584f8f",
         "type": "github"
       },
       "original": {
@@ -144,6 +144,30 @@
         "type": "github"
       }
     },
+    "nixpkgs-pr-claude-desktop": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-ju3pJ7soyHAMqqifVx0xI1oSwrDK3KPLZ6nMh2CWy7o=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/pull/537215/head/pkgs/by-name/cl/claude-desktop/package.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/pull/537215/head/pkgs/by-name/cl/claude-desktop/package.nix"
+      }
+    },
+    "nixpkgs-pr-proton-drive-cli": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-ag3RZ5oRWgteuPI/IWvBmNPYGZlcFiti1BGz9bJfGmQ=",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/pull/557198/head/pkgs/by-name/pr/proton-drive-cli/package.nix"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/pull/557198/head/pkgs/by-name/pr/proton-drive-cli/package.nix"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -154,11 +178,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792076831,
-        "narHash": "sha256-kMwByz4z7CRgYH6qTyI0yzyfVQ/LpZJJ05RGnSlXn5Y=",
+        "lastModified": 1792169689,
+        "narHash": "sha256-SUA7KZBVyA1eCWVz4xnLtIztq2EJoYLefuuxns6udLw=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "9421a8072f7ef4b2fc35595346c5a0a90131f615",
+        "rev": "8f45b0d91f4561db72bb325018e1714ba6566573",
         "type": "github"
       },
       "original": {
@@ -176,6 +200,8 @@
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-pr-claude-desktop": "nixpkgs-pr-claude-desktop",
+        "nixpkgs-pr-proton-drive-cli": "nixpkgs-pr-proton-drive-cli",
         "nur": "nur",
         "sops-nix": "sops-nix",
         "zen-browser": "zen-browser"

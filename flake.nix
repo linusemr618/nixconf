@@ -1,6 +1,14 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-pr-claude-desktop = {
+      url = "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/pull/537215/head/pkgs/by-name/cl/claude-desktop/package.nix";
+      flake = false;
+    };
+    nixpkgs-pr-proton-drive-cli = {
+      url = "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/pull/557198/head/pkgs/by-name/pr/proton-drive-cli/package.nix";
+      flake = false;
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

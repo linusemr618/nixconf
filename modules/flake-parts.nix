@@ -16,9 +16,6 @@
     };
     devShells.default = import ../shell.nix {inherit pkgs;};
     formatter = pkgs.alejandra;
-    packages = {
-      proton-drive-cli = pkgs.callPackage ../pkgs/proton-drive-cli/package.nix {};
-      iso = self.nixosConfigurations.iso.config.system.build.isoImage;
-    };
+    packages.iso = self.nixosConfigurations.iso.config.system.build.isoImage;
   };
 }

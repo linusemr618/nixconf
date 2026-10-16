@@ -1,4 +1,8 @@
-{self, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
   flake.modules.nixos.minimal = {pkgs, ...}: {
     environment.systemPackages = [pkgs.aircrack-ng];
 
@@ -38,5 +42,9 @@
       self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
       (python3.withPackages (ps: [ps.tkinter]))
     ];
+  };
+
+  perSystem = {pkgs, ...}: {
+    packages.proton-drive-cli = pkgs.callPackage inputs.nixpkgs-pr-proton-drive-cli {};
   };
 }
