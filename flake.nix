@@ -2,11 +2,15 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-pr-claude-desktop = {
-      url = "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/pull/537215/head/pkgs/by-name/cl/claude-desktop/package.nix";
+      url = "github:NixOS/nixpkgs?ref=pull/537215/head";
       flake = false;
     };
     nixpkgs-pr-proton-drive-cli = {
-      url = "https://raw.githubusercontent.com/NixOS/nixpkgs/refs/pull/557198/head/pkgs/by-name/pr/proton-drive-cli/package.nix";
+      url = "github:NixOS/nixpkgs?ref=pull/557198/head";
+      flake = false;
+    };
+    nixpkgs-pr-proton-vpn = {
+      url = "github:NixOS/nixpkgs?ref=pull/569789/head";
       flake = false;
     };
     home-manager = {

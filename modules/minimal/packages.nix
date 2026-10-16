@@ -36,15 +36,15 @@
       nil
       nixfmt
       openssh
+      self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
       unzip
       usbutils
       wget
-      self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
       (python3.withPackages (ps: [ps.tkinter]))
     ];
   };
 
   perSystem = {pkgs, ...}: {
-    packages.proton-drive-cli = pkgs.callPackage inputs.nixpkgs-pr-proton-drive-cli {};
+    packages.proton-drive-cli = pkgs.callPackage "${inputs.nixpkgs-pr-proton-drive-cli}/pkgs/by-name/pr/proton-drive-cli/package.nix" {};
   };
 }

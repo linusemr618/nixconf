@@ -9,6 +9,7 @@
 
   flake.modules.homeManager.graphical = {pkgs, ...}: {
     home.packages = with pkgs; [
+      self.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
       dconf-editor
       #fractal
       gnome-boxes
@@ -17,17 +18,19 @@
       gnome-tweaks
       plex-desktop
       proton-pass
-      proton-vpn
+      proton-vpn #self.packages.${pkgs.stdenv.hostPlatform.system}.proton-vpn
       spotify
       sqlitebrowser
       vlc
-      self.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
     ];
 
     #xdg.autostart.entries = ["${pkgs.proton-vpn}/share/applications/proton.vpn.app.gtk.desktop"];
   };
 
   perSystem = {pkgs, ...}: {
-    packages.claude-desktop = pkgs.callPackage inputs.nixpkgs-pr-claude-desktop {};
+    packages = {
+      claude-desktop = pkgs.callPackage "${inputs.nixpkgs-pr-claude-desktop}/pkgs/by-name/cl/claude-desktop/package.nix" {};
+      proton-vpn = pkgs.callPackage "${inputs.nixpkgs-pr-proton-vpn}/pkgs/by-name/pr/proton-vpn/package.nix" {};
+    };
   };
 }
