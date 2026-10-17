@@ -65,13 +65,12 @@
         };
 
         initContent = ''
-          run() { NIXPKGS_ALLOW_UNFREE=1 nix run --impure "nixpkgs#$1" -- "''${@:2}" }
-          shell() {
-            local pkgs=()
-            for p in "$@"; do
-              pkgs+=("nixpkgs#$p")
-            done
-            NIXPKGS_ALLOW_UNFREE=1 nix shell --impure "''${pkgs[@]}" -c zsh
+          run() { NIXPKGS_ALLOW_UNFREE=1 nix run --impure "nixpkgs#$1" -- "''${@:2}"; }
+          run-pr() { NIXPKGS_ALLOW_UNFREE=1 nix run --impure "github:NixOS/nixpkgs/pull/$1/head#$2" -- "''${@:3}"; }
+          shell() { NIXPKGS_ALLOW_UNFREE=1 nix shell --impure "nixpkgs#"''${^@}; }
+          shell-pr() {
+            local pr=$1; shift
+            NIXPKGS_ALLOW_UNFREE=1 nix shell --impure "github:NixOS/nixpkgs/pull/$pr/head#"''${^@}
           }
         '';
       };

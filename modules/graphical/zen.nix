@@ -19,6 +19,11 @@
           force = true;
           default = "duckduckgo";
           engines = {
+            nixpkgs-pr = {
+              name = "Nixpkgs PR";
+              urls = [{template = "https://github.com/NixOS/nixpkgs/pulls?q=is%3Apr+state%3Aopen+\"{searchTerms}\"";}];
+              definedAliases = ["@npr"];
+            };
             nixos-options = {
               name = "NixOS Options";
               urls = [{template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}";}];
