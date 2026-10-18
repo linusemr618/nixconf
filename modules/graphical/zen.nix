@@ -21,7 +21,7 @@
           engines = {
             nixpkgs-pr = {
               name = "Nixpkgs PR";
-              urls = [{template = "https://github.com/NixOS/nixpkgs/pulls?q=is%3Apr+state%3Aopen+\"{searchTerms}\"";}];
+              urls = [{template = "https://github.com/NixOS/nixpkgs/pulls?q=is%3Apr+state%3Aopen+sort%3Arelevance+\"{searchTerms}\"";}];
               definedAliases = ["@npr"];
             };
             nixos-options = {
