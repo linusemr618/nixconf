@@ -12,7 +12,7 @@
         # };
       };
       open-webui = {
-        #enable = true;
+        # enable = true;
         port = 11111;
       };
     };
