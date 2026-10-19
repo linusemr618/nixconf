@@ -11,6 +11,7 @@
           self.modules.nixos.minimal
           self.modules.nixos.graphical
           self.modules.nixos.graphicalGnome
+          self.modules.nixos.optional
         ];
         home-manager.users.${config.var.user.name}.imports = [
           self.modules.homeManager.hostsLaptop
