@@ -1,4 +1,4 @@
-{...}: {
+{self, ...}: {
   flake.modules.nixos.minimal = {
     config,
     lib,
@@ -45,8 +45,9 @@
       hostName = "${config.var.host.name}";
       networkmanager = {
         enable = true;
-        plugins = with pkgs; [
-          networkmanager-openconnect
+        plugins = [
+          pkgs.networkmanager-openconnect
+          self.packages.${pkgs.stdenv.hostPlatform.system}.networkmanager-vpnc
         ];
         ensureProfiles = {
           environmentFiles = [config.sops.secrets."networking/env".path];
@@ -88,6 +89,34 @@
                   eap = "pwd";
                   identity = "$WIFI_eduroam_IDENTITY";
                   password = "$WIFI_eduroam_PASSWORD";
+                };
+                ipv4.method = "auto";
+                ipv6 = {
+                  addr-gen-mode = "default";
+                  method = "auto";
+                };
+              };
+
+              Kaffeekanne_IPSEC = {
+                connection = {
+                  id = "Kaffeekanne_IPSEC";
+                  type = "vpn";
+                  autoconnect = false;
+                };
+                vpn = {
+                  "IKE DH Group" = "dh2";
+                  "IPSec ID" = "$VPN_Kaffeekanne_IPSEC_ID";
+                  "IPSec gateway" = "$VPN_Kaffeekanne_IPSEC_GATEWAY";
+                  "IPSec secret-flags" = 1;
+                  "Local Port" = 0;
+                  "NAT Traversal Mode" = "natt";
+                  "Perfect Forward Secrecy" = "server";
+                  Vendor = "cisco";
+                  "Xauth password-flags" = 1;
+                  "Xauth username" = "$VPN_Kaffeekanne_IPSEC_ID";
+                  "ipsec-secret-type" = "save";
+                  "xauth-password-type" = "save";
+                  "service-type" = "org.freedesktop.NetworkManager.vpnc";
                 };
                 ipv4.method = "auto";
                 ipv6 = {
@@ -205,5 +234,166 @@
         };
       };
     };
+  };
+
+  perSystem = {pkgs, ...}: {
+    packages.networkmanager-vpnc = pkgs.callPackage ({
+      stdenv,
+      lib,
+      fetchurl,
+      replaceVars,
+      writeText,
+      vpnc,
+      pkg-config,
+      networkmanager,
+      libsecret,
+      gtk3,
+      gtk4,
+      withGnome ? true,
+      gnome,
+      glib,
+      kmod,
+      file,
+      libnma,
+      libnma-gtk4,
+    }:
+      stdenv.mkDerivation rec {
+        pname = "NetworkManager-vpnc";
+        version = "1.4.0";
+
+        src = fetchurl {
+          url = "mirror://gnome/sources/NetworkManager-vpnc/${lib.versions.majorMinor version}/NetworkManager-vpnc-${version}.tar.xz";
+          sha256 = "47KpiIAnWht1FUvDF6eGQ8/fnqfnDfTu2WSPKeolNzA=";
+        };
+
+        patches = [
+          (replaceVars (writeText "fix-paths.patch" ''
+              --- a/properties/nm-vpnc-editor-plugin.c
+              +++ b/properties/nm-vpnc-editor-plugin.c
+              @@ -161,7 +161,7 @@
+               	GError *error = NULL;
+
+               	const char *decrypt_possible_paths[] = {
+              -		"/usr/lib/vpnc/cisco-decrypt",
+              +		"@vpnc@/bin/cisco-decrypt",
+               		"/usr/bin/cisco-decrypt",
+               		NULL
+               	};
+              --- a/src/nm-vpnc-service.c
+              +++ b/src/nm-vpnc-service.c
+              @@ -610,7 +610,7 @@
+               find_vpnc (void)
+               {
+               	static const char *vpnc_paths[] = {
+              -		"/usr/sbin/vpnc",
+              +		"@vpnc@/bin/vpnc",
+               		"/sbin/vpnc",
+               		"/usr/local/sbin/vpnc",
+               		NULL
+              @@ -1308,7 +1308,7 @@
+               	_LOGD ("   vpnc interactive mode is %s", interactive_available ? "enabled" : "disabled");
+               	_LOGD ("   uses%s --bus-name \"%s\"", bus_name_free ? "" : " default", bus_name);
+
+              -	if (system ("/sbin/modprobe tun") == -1)
+              +	if (system ("@kmod@/bin/modprobe tun") == -1)
+               		exit (EXIT_FAILURE);
+
+               	plugin = nm_vpnc_plugin_new (bus_name);
+            '') {
+              inherit vpnc kmod;
+            })
+          # https://gitlab.gnome.org/GNOME/NetworkManager-vpnc/-/merge_requests/19
+          (writeText "export_nm_vpn_editor_factory_vpnc.patch" ''
+            commit 4c9e26cdc9f58f0e35aa345ae3bb643bea139608
+            Author: Christian Krause <chkr@plauener.de>
+            Date:   Tue May 6 00:33:39 2025 +0200
+
+                Export nm_vpn_editor_factory_vpnc properly
+
+                - commit e2fc231149165cb37a25362b85cbcd58b15a2a11 removed
+                  libnm-glib version
+                - after that commit, nm_vpn_editor_factory_vpnc was not correctly
+                  exported anymore which caused the settings editor be missing
+                  when adding or editing a vnpc connection in gnome-control-center
+                - this commit re-adds the removed G_MODULE_EXPORT declaration
+
+            diff --git a/properties/nm-vpnc-editor.c b/properties/nm-vpnc-editor.c
+            index a06807d..0c8081d 100644
+            --- a/properties/nm-vpnc-editor.c
+            +++ b/properties/nm-vpnc-editor.c
+            @@ -27,7 +27,6 @@
+             #include "nm-default.h"
+
+             #include "nm-vpnc-editor.h"
+            -#include "nm-vpnc-editor-plugin.h"
+
+             #include <nma-cert-chooser.h>
+             #include <netinet/in.h>
+            @@ -1130,3 +1129,20 @@ vpnc_editor_interface_init (NMVpnEditorInterface *iface)
+             	iface->get_widget = get_widget;
+             	iface->update_connection = update_connection;
+             }
+            +
+            +/*****************************************************************************/
+            +
+            +#ifndef NM_VPN_OLD
+            +
+            +#include "nm-vpnc-editor-plugin.h"
+            +
+            +G_MODULE_EXPORT NMVpnEditor *
+            +nm_vpn_editor_factory_vpnc (NMVpnEditorPlugin *editor_plugin,
+            +                            NMConnection *connection,
+            +                            GError **error)
+            +{
+            +       g_return_val_if_fail (!error || !*error, NULL);
+            +
+            +       return nm_vpnc_editor_new (connection, error);
+            +}
+            +#endif
+          '')
+        ];
+
+        nativeBuildInputs = [
+          pkg-config
+          file
+          glib
+        ];
+
+        buildInputs =
+          [
+            vpnc
+            networkmanager
+          ]
+          ++ lib.optionals withGnome [
+            gtk3
+            gtk4
+            libsecret
+            libnma
+            libnma-gtk4
+          ];
+
+        configureFlags = [
+          "--with-gnome=${lib.boolToYesNo withGnome}"
+          "--with-gtk4=${lib.boolToYesNo withGnome}"
+          "--enable-absolute-paths"
+        ];
+
+        strictDeps = true;
+
+        passthru = {
+          updateScript = gnome.updateScript {
+            packageName = pname;
+            attrPath = "networkmanager-vpnc";
+            versionPolicy = "odd-unstable";
+          };
+          networkManagerPlugin = "VPN/nm-vpnc-service.name";
+        };
+
+        meta = {
+          description = "NetworkManager's VPNC plugin";
+          inherit (networkmanager.meta) maintainers teams platforms;
+          license = lib.licenses.gpl2Plus;
+        };
+      }) {};
   };
 }
