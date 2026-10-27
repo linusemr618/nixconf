@@ -12,7 +12,7 @@
     };
     environment.systemPackages = [pkgs.nautilus-python];
 
-    # temp fix for a bug in gdm 50.2; remove in the future
+    # temp fix for a bug in gdm 50.2; TODO remove in the future
     security.pam.services.gdm-autologin.rules.auth.gdm.modulePath = lib.mkForce "${config.systemd.package}/lib/security/pam_systemd_loadkey.so";
   };
 

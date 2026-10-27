@@ -5,12 +5,8 @@
       url = "github:NixOS/nixpkgs?ref=pull/537215/head";
       flake = false;
     };
-    nixpkgs-pr-proton-drive-cli = {
-      url = "github:NixOS/nixpkgs?ref=pull/557198/head";
-      flake = false;
-    };
     nixpkgs-pr-proton-vpn = {
-      url = "github:NixOS/nixpkgs?ref=pull/569789/head";
+      url = "github:NixOS/nixpkgs?ref=pull/551532/head";
       flake = false;
     };
     home-manager = {

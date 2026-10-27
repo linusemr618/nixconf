@@ -17,7 +17,7 @@
         };
         search = {
           force = true;
-          default = "duckduckgo";
+          default = "startpage";
           engines = {
             nixpkgs-pr = {
               name = "Nixpkgs PR";
@@ -49,6 +49,10 @@
                     {
                       name = "query";
                       value = "{searchTerms}";
+                    }
+                    {
+                      name = "segment";
+                      value = "startpage.apex.desktop";
                     }
                     {
                       name = "prfe";

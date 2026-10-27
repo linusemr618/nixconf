@@ -1,9 +1,9 @@
 {...}: {
   flake.modules.homeManager.optional = {pkgs, ...}: {
     home.packages = with pkgs; [
-      #deckcraft
+      deckcraft
       jetbrains.pycharm
-      libreoffice
+      #libreoffice
       wineWow64Packages.waylandFull
       winetricks
       wordcraft

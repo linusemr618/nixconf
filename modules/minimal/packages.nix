@@ -1,8 +1,4 @@
-{
-  inputs,
-  self,
-  ...
-}: {
+{...}: {
   flake.modules.nixos.minimal = {pkgs, ...}: {
     environment.systemPackages = [pkgs.aircrack-ng];
 
@@ -36,15 +32,11 @@
       nil
       nixfmt
       openssh
-      self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
+      #proton-drive-cli
       unzip
       usbutils
       wget
       (python3.withPackages (ps: [ps.tkinter]))
     ];
-  };
-
-  perSystem = {pkgs, ...}: {
-    packages.proton-drive-cli = pkgs.callPackage "${inputs.nixpkgs-pr-proton-drive-cli}/pkgs/by-name/pr/proton-drive-cli/package.nix" {};
   };
 }
