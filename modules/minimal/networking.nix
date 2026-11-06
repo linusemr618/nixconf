@@ -43,6 +43,7 @@
     sops.secrets."networking/env" = {};
     networking = {
       hostName = "${config.var.host.name}";
+      nftables.enable = true;
       networkmanager = {
         enable = true;
         plugins = [

@@ -12,8 +12,8 @@
       useRoutingFeatures = "client";
     };
   };
-  flake.modules.homeManager.minimal = {...}: {
-    #home.packages = [pkgs.tailscale];
-    services.tailscale-systray.enable = true;
-  };
+  #flake.modules.homeManager.minimal = {...}: {
+  #  #home.packages = [pkgs.tailscale];
+  #  services.tailscale-systray.enable = true;
+  #};
 }
