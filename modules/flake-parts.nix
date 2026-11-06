@@ -1,8 +1,4 @@
-{
-  inputs,
-  self,
-  ...
-}: {
+{inputs, ...}: {
   imports = [inputs.flake-parts.flakeModules.modules];
   systems = ["x86_64-linux" "aarch64-linux"];
   perSystem = {
@@ -16,6 +12,5 @@
     };
     devShells.default = import ../shell.nix {inherit pkgs;};
     formatter = pkgs.alejandra;
-    packages.iso = self.nixosConfigurations.iso.config.system.build.isoImage;
   };
 }

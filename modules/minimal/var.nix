@@ -4,23 +4,23 @@ let
     lib,
     ...
   }: {
-    options = with lib; {
+    options = {
       var = {
         host.name = lib.mkOption {
           type = lib.types.str;
         };
         user = {
-          name = mkOption {
-            type = types.str;
+          name = lib.mkOption {
+            type = lib.types.str;
             default = "linus";
           };
-          description = mkOption {
-            type = types.str;
+          description = lib.mkOption {
+            type = lib.types.str;
             default = "Linus Emmerich";
           };
         };
-        flake.location = mkOption {
-          type = types.str;
+        flake.location = lib.mkOption {
+          type = lib.types.str;
           default = "/home/${config.var.user.name}/nixconf";
         };
       };

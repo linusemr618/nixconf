@@ -5,6 +5,10 @@
       url = "github:NixOS/nixpkgs?ref=pull/537215/head";
       flake = false;
     };
+    nixpkgs-pr-proton-drive-cli = {
+      url = "github:NixOS/nixpkgs?ref=pull/582801/head";
+      flake = false;
+    };
     nixpkgs-pr-proton-vpn = {
       url = "github:NixOS/nixpkgs?ref=pull/551532/head";
       flake = false;
