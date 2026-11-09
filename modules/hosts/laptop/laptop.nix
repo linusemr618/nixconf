@@ -2,19 +2,22 @@
   inputs,
   self,
   ...
-}: {
-  flake.nixosConfigurations.laptop = inputs.nixpkgs.lib.nixosSystem {
+}: let
+  host = "laptop";
+  hostModule = "hostsLaptop";
+in {
+  flake.nixosConfigurations.${host} = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ({config, ...}: {
         imports = [
-          self.modules.nixos.hostsLaptop
+          self.modules.nixos.${hostModule}
           self.modules.nixos.minimal
           self.modules.nixos.graphical
           self.modules.nixos.graphicalGnome
           self.modules.nixos.optional
         ];
         home-manager.users.${config.var.user.name}.imports = [
-          self.modules.homeManager.hostsLaptop
+          self.modules.homeManager.${hostModule}
           self.modules.homeManager.minimal
           self.modules.homeManager.graphical
           self.modules.homeManager.graphicalGnome
@@ -23,13 +26,12 @@
       })
     ];
   };
-  flake.modules.nixos.hostsLaptop = {
-    config,
+  flake.modules.nixos.${hostModule} = {
     lib,
     modulesPath,
     ...
   }: {
-    var.host.name = "laptop";
+    var.host.name = host;
     imports = [
       (modulesPath + "/installer/scan/not-detected.nix")
       inputs.nixos-hardware.nixosModules.common-pc-laptop
@@ -49,9 +51,8 @@
       };
     };
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   };
-  flake.modules.homeManager.hostsLaptop = {...}: {
-    var.host.name = "laptop";
+  flake.modules.homeManager.${hostModule} = {...}: {
+    var.host.name = host;
   };
 }

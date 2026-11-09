@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.minimal = {config, ...}: {
+  flake.modules.nixos.optional = {config, ...}: {
     services.tailscale = {
       enable = true;
       disableUpstreamLogging = true;

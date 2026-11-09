@@ -10,18 +10,9 @@
 
   flake.modules.homeManager.minimal = {config, ...}: {
     programs = {
-      fzf = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-      starship = {
-        enable = true;
-        enableZshIntegration = true;
-      };
-      zoxide = {
-        enable = true;
-        enableZshIntegration = true;
-      };
+      fzf.enable = true;
+      starship.enable = true;
+      zoxide.enable = true;
       zsh = {
         enable = true;
         autocd = true;

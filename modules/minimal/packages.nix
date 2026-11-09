@@ -1,21 +1,6 @@
-{
-  inputs,
-  self,
-  ...
-}: {
+{...}: {
   flake.modules.nixos.minimal = {pkgs, ...}: {
     environment.systemPackages = [pkgs.aircrack-ng];
-
-    # programs.appimage = {
-    #   enable = true;
-    #   binfmt = true;
-    #   package = pkgs.appimage-run.override {
-    #     extraPkgs = pkgs: [
-    #         pkgs.libxshmfence
-    #       ];
-    #   };
-    # };
-    services.flatpak.enable = true;
   };
 
   flake.modules.homeManager.minimal = {pkgs, ...}: {
@@ -24,10 +9,8 @@
       android-tools
       devenv
       disko
-      ffmpeg-full
       file
       gcc
-      git
       gh
       htop
       hping
@@ -37,16 +20,10 @@
       nil
       nixfmt
       nixpkgs-reviewFull
-      openssh
-      self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
       unzip
       usbutils
       wget
       (python3.withPackages (ps: [ps.tkinter]))
     ];
-  };
-
-  perSystem = {pkgs, ...}: {
-    packages.proton-drive-cli = pkgs.callPackage "${inputs.nixpkgs-pr-proton-drive-cli}/pkgs/by-name/pr/proton-drive-cli/package.nix" {};
   };
 }

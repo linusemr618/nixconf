@@ -5,13 +5,7 @@
     ...
   }: {
     boot.kernelPackages = pkgs.linuxPackages_latest;
-    hardware = {
-      enableAllFirmware = true;
-      graphics = {
-        enable = true;
-        enable32Bit = true;
-      };
-    };
+    hardware.enableAllFirmware = true;
     services.fwupd.enable = true;
 
     time.timeZone = "Europe/Dublin";
@@ -30,10 +24,7 @@
       };
     };
     console.keyMap = "de";
-    services.xserver.xkb = {
-      layout = "de";
-      variant = "";
-    };
+    services.xserver.xkb.layout = "de";
 
     security.rtkit.enable = true;
     services.pipewire = {
@@ -49,21 +40,6 @@
     # };
     # services.openssh.enable = true;
 
-    services = {
-      avahi = {
-        enable = true;
-        nssmdns4 = true;
-        openFirewall = true;
-      };
-      printing = {
-        enable = true;
-        drivers = with pkgs; [
-          cups-filters
-          cups-browsed
-        ];
-      };
-    };
-
     system.stateVersion = "26.05";
 
     imports = [inputs.home-manager.nixosModules.home-manager];
@@ -75,19 +51,14 @@
       linger = true;
     };
     home-manager = {
-      backupFileExtension = "backup";
+      backupFileExtension = "hmbackup";
       useUserPackages = true;
       useGlobalPkgs = true;
     };
     sops.secrets."user/password" = {};
   };
 
-  flake.modules.homeManager.minimal = {config, ...}: {
-    home = {
-      username = config.var.user.name;
-      homeDirectory = "/home/${config.var.user.name}";
-      stateVersion = "26.05";
-    };
-    systemd.user.startServices = "sd-switch";
+  flake.modules.homeManager.minimal = {...}: {
+    home.stateVersion = "26.05";
   };
 }

@@ -15,10 +15,8 @@
       userSettings = {
         agent.dock = "right";
         agent_servers.claude-acp.type = "registry";
-        auto_install_extensions.nix = true;
         autosave = "on_focus_change";
         base_keymap = "VSCode";
-        buffer_font_size = 15;
         collaboration_panel.dock = "left";
         edit_predictions = {
           allow_data_collection = "no";
@@ -27,11 +25,6 @@
         format_on_save = "off";
         git_panel.dock = "left";
         hour_format = "hour24";
-        icon_theme = {
-          mode = "system";
-          light = "Zed (Default)";
-          dark = "Zed (Default)";
-        };
         languages.Nix.formatter.external = {
           command = "alejandra";
           arguments = ["--quiet" "--"];
@@ -42,13 +35,6 @@
           diagnostics = false;
           metrics = false;
         };
-        theme = {
-          mode = "system";
-          light = "One Light";
-          dark = "One Dark";
-        };
-        ui_font_size = 16;
-        vim_mode = false;
       };
     };
 

@@ -2,9 +2,9 @@
   flake.modules.nixos.optional = {pkgs, ...}: {
     services = {
       ollama = {
-        #enable = true;
+        enable = true;
         # host = "0.0.0.0";
-        loadModels = ["gemma4:e2b" "gemma4:e4b" "qwen3.5:2b" "qwen3.5:4b" "qwen3.5:9b" "openbmb/minicpm5-2b:2b" "ingloryon/k2-horizon:3.7b"];
+        loadModels = ["gemma4:e2b" "gemma4:e4b" "qwen3.5:2b" "qwen3.5:4b" "qwen3.5:9b" "qwen3-vl:8b"];
         # openFirewall = true;
         #package = pkgs.ollama-vulkan;
         environmentVariables = {

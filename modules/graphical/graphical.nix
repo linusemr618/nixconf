@@ -1,16 +1,23 @@
 {...}: {
   flake.modules.nixos.graphical = {config, ...}: {
     environment.sessionVariables.NIXOS_OZONE_WL = 1;
-    services.displayManager = {
-      autoLogin = {
+    services = {
+      avahi = {
         enable = true;
-        user = "${config.var.user.name}";
+        nssmdns4 = true;
+        openFirewall = true;
       };
+      displayManager = {
+        autoLogin = {
+          enable = true;
+          user = "${config.var.user.name}";
+        };
+      };
+      printing.enable = true;
     };
   };
 
   flake.modules.homeManager.graphical = {...}: {
-    dconf.enable = true;
     xdg = {
       enable = true;
       autostart.enable = true;

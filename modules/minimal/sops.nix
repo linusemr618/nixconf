@@ -11,7 +11,7 @@
         then self + "/secrets/empty.yaml"
         else self + "/secrets/secrets.yaml";
       age = {
-        sshKeyPaths = lib.mkIf (builtins.getEnv "EMPTY_SECRETS" != 1) ["/etc/ssh/ssh_host_ed25519_key"];
+        sshKeyPaths = lib.mkIf (builtins.getEnv "EMPTY_SECRETS" != "1") ["/etc/ssh/ssh_host_ed25519_key"];
         keyFile = lib.mkIf (builtins.getEnv "EMPTY_SECRETS" == "1") "${builtins.getEnv "PWD"}/secrets/empty.txt";
       };
     };
@@ -34,7 +34,7 @@
         then self + "/secrets/empty.yaml"
         else self + "/secrets/secrets.yaml";
       age = {
-        sshKeyPaths = lib.mkIf (builtins.getEnv "EMPTY_SECRETS" != 1) ["/etc/ssh/ssh_host_ed25519_key"];
+        sshKeyPaths = lib.mkIf (builtins.getEnv "EMPTY_SECRETS" != "1") ["/etc/ssh/ssh_host_ed25519_key"];
         keyFile = lib.mkIf (builtins.getEnv "EMPTY_SECRETS" == "1") "${builtins.getEnv "PWD"}/secrets/empty.txt";
       };
     };
