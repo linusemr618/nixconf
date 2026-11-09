@@ -12,7 +12,7 @@
       useRoutingFeatures = "client";
     };
   };
-  #flake.modules.homeManager.minimal = {...}: {
+  #flake.modules.homeManager.optional = {...}: {
   #  #home.packages = [pkgs.tailscale];
   #  services.tailscale-systray.enable = true;
   #};
