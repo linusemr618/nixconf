@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.graphical = {config, ...}: {
+  flake.modules.nixos.optional = {config, ...}: {
     virtualisation.vmware.host = {
       enable = true;
       extraConfig = ''

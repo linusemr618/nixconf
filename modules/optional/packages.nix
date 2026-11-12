@@ -25,7 +25,7 @@
       jetbrains.pycharm
       #libreoffice
       plex-desktop
-      self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
+      proton-drive-cli #self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
       spotify
       wineWow64Packages.waylandFull
       winetricks
@@ -36,7 +36,7 @@
   perSystem = {pkgs, ...}: {
     packages = {
       claude-desktop = pkgs.callPackage "${inputs.nixpkgs-pr-claude-desktop}/pkgs/by-name/cl/claude-desktop/package.nix" {};
-      proton-drive-cli = pkgs.callPackage "${inputs.nixpkgs-pr-proton-drive-cli}/pkgs/by-name/pr/proton-drive-cli/package.nix" {};
+      #proton-drive-cli = pkgs.callPackage "${inputs.nixpkgs-pr-proton-drive-cli}/pkgs/by-name/pr/proton-drive-cli/package.nix" {};
     };
   };
 }
