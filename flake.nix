@@ -9,15 +9,16 @@
     #   url = "github:NixOS/nixpkgs?ref=pull/582801/head";
     #   flake = false;
     # };
-    nixpkgs-pr-proton-vpn = {
-      url = "github:NixOS/nixpkgs?ref=pull/551532/head";
-      flake = false;
-    };
+    # nixpkgs-pr-proton-vpn = {
+    #   url = "github:NixOS/nixpkgs?ref=pull/551532/head";
+    #   flake = false;
+    # };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,8 +54,14 @@
   };
 
   nixConfig = {
-    extra-substituters = ["https://nix-community.cachix.org"];
-    extra-trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://install.determinate.systems"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "cache.flakehub.com-3:hJuILl5sVK4iKm86JzgdXW12Y2Hwd5G07qKtHTOcDCM="
+    ];
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake {inherit inputs;} (inputs.import-tree ./modules);

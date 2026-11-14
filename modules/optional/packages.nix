@@ -1,8 +1,4 @@
-{
-  inputs,
-  self,
-  ...
-}: {
+{inputs, ...}: {
   flake.modules.nixos.optional = {...}: {
     # programs.appimage = {
     #   enable = true;
@@ -17,7 +13,7 @@
   };
   flake.modules.homeManager.optional = {pkgs, ...}: {
     home.packages = with pkgs; [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop
+      (pkgs.callPackage "${inputs.nixpkgs-pr-claude-desktop}/pkgs/by-name/cl/claude-desktop/package.nix" {})
       deckcraft
       ffmpeg-full
       #fractal
@@ -25,18 +21,11 @@
       jetbrains.pycharm
       #libreoffice
       plex-desktop
-      proton-drive-cli #self.packages.${pkgs.stdenv.hostPlatform.system}.proton-drive-cli
+      proton-drive-cli #(pkgs.callPackage "${inputs.nixpkgs-pr-proton-drive-cli}/pkgs/by-name/pr/proton-drive-cli/package.nix" {})
       spotify
       wineWow64Packages.waylandFull
       winetricks
       wordcraft
     ];
-  };
-
-  perSystem = {pkgs, ...}: {
-    packages = {
-      claude-desktop = pkgs.callPackage "${inputs.nixpkgs-pr-claude-desktop}/pkgs/by-name/cl/claude-desktop/package.nix" {};
-      #proton-drive-cli = pkgs.callPackage "${inputs.nixpkgs-pr-proton-drive-cli}/pkgs/by-name/pr/proton-drive-cli/package.nix" {};
-    };
   };
 }

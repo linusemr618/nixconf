@@ -1,10 +1,9 @@
 {inputs, ...}: {
-  flake.modules.nixos.minimal = {
-    config,
-    #lib,
-    ...
-  }: {
-    imports = [inputs.nix-index-database.nixosModules.default];
+  flake.modules.nixos.minimal = {config, ...}: {
+    imports = [
+      inputs.determinate.nixosModules.default
+      inputs.nix-index-database.nixosModules.default
+    ];
 
     nixpkgs = {
       config.allowUnfree = true;
@@ -26,10 +25,9 @@
         trusted-public-keys = ["nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="];
         trusted-users = ["@wheel"];
         warn-dirty = false;
-        #flake-registry = "";
+        nix-path = config.nix.nixPath; # For Determinate Nix
       };
-      #registry = lib.mapAttrs (_: value: {flake = value;}) inputs;
-      #nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") inputs;
+      registry.nixpkgs.flake = inputs.nixpkgs; # For Determinate Nix
     };
 
     programs.nix-ld.enable = true;
