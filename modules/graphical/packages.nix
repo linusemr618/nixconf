@@ -1,6 +1,7 @@
 {...}: {
   flake.modules.nixos.graphical = {pkgs, ...}: {
     environment.systemPackages = [pkgs.gparted];
+    fonts.packages = [pkgs.corefonts];
   };
 
   flake.modules.homeManager.graphical = {pkgs, ...}: {
