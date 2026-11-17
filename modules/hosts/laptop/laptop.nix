@@ -4,6 +4,7 @@
 
     "graphical"
     "graphicalGnome"
+    "graphicalGnomeSecrets"
 
     "element"
     "extrapkgs"
