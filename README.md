@@ -14,22 +14,14 @@ nix-shell
 
 ### Build and switch to the configuration
 
-With an authorised host ssh key:
-
 ```bash
 sudo nixos-rebuild switch --flake .#laptop
-```
-
-Without authorisation (every secret will be "changeme"):
-
-```bash
-sudo EMPTY_SECRETS=1 nixos-rebuild switch --impure --flake .#laptop
 ```
 
 ### Build an ISO file
 
 ```bash
-EMPTY_SECRETS=1 nix build --impure .#iso
+nix build .#iso
 ```
 
 ## To-Dos:
