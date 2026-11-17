@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.nixos.optional = {pkgs, ...}: {
+  flake.modules.nixos.ollama = {pkgs, ...}: {
     services = {
       ollama = {
         enable = true;

@@ -8,7 +8,7 @@
     users.users.${config.var.user.name}.shell = pkgs.zsh;
   };
 
-  flake.modules.homeManager.minimal = {config, ...}: {
+  flake.modules.homeManager.minimal = {osConfig, ...}: {
     programs = {
       fzf.enable = true;
       starship.enable = true;
@@ -49,8 +49,8 @@
 
         shellAliases = {
           gu = "git pull && git add . && git commit -m \"update $(date -u --iso-8601=seconds)\" && git push";
-          nu = "nix flake update --flake ${config.var.flake.location}";
-          nos = "nh os switch"; # git -C ${config.var.flake.location} add . &&
+          nu = "nix flake update --flake ${osConfig.var.flake.location}";
+          nos = "nh os switch"; # git -C ${osConfig.var.flake.location} add . &&
           nc = "nh clean all";
           update = "nu && nos";
         };

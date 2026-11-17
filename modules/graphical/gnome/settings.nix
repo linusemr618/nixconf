@@ -158,7 +158,7 @@
           CalendarEnabled=true
           ContactsEnabled=true
         '';
-        path = "/home/${config.var.user.name}/.config/goa-1.0/accounts.conf";
+        path = "${config.home.homeDirectory}/.config/goa-1.0/accounts.conf";
       };
     };
 

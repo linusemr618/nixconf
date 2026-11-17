@@ -4,7 +4,7 @@
     pkgs,
     ...
   }: let
-    home = "/home/${config.var.user.name}";
+    home = "${config.home.homeDirectory}";
   in {
     home.packages = [pkgs.rclone];
     sops.secrets."${config.var.host.name}/backup/restic_password" = {};

@@ -1,6 +1,6 @@
 {...}: {
   flake.modules.homeManager.graphicalGnome = {
-    config,
+    osConfig,
     lib,
     pkgs,
     ...
@@ -40,7 +40,7 @@
         toggle-shortcut = ["<Super>c"];
       };
 
-      "org/gnome/shell/extensions/gsconnect".name = "${config.var.host.name}";
+      "org/gnome/shell/extensions/gsconnect".name = osConfig.networking.hostName;
       "org/gnome/shell/extensions/gsconnect/device/${pixel8ProId}/plugin/battery" = {
         full-battery-notification = true;
         send-statistics = true;

@@ -1,6 +1,7 @@
 {...}: {
   flake.modules.nixos.graphical = {config, ...}: {
     environment.sessionVariables.NIXOS_OZONE_WL = 1;
+    security.rtkit.enable = true;
     services = {
       avahi = {
         enable = true;
@@ -12,6 +13,12 @@
           enable = true;
           user = "${config.var.user.name}";
         };
+      };
+      pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
       };
       printing.enable = true;
     };

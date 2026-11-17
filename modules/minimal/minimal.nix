@@ -1,10 +1,11 @@
 {inputs, ...}: {
   flake.modules.nixos.minimal = {
     config,
+    lib,
     pkgs,
     ...
   }: {
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
     hardware.enableAllFirmware = true;
     services.fwupd.enable = true;
 
@@ -26,25 +27,14 @@
     console.keyMap = "de";
     services.xserver.xkb.layout = "de";
 
-    security.rtkit.enable = true;
-    services.pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-    };
-
     # programs.gnupg.agent = {
     #   enable = true;
     #   enableSSHSupport = true;
     # };
     # services.openssh.enable = true;
 
-    system.stateVersion = "26.05";
-
     imports = [inputs.home-manager.nixosModules.home-manager];
     users.users.${config.var.user.name} = {
-      hashedPasswordFile = config.sops.secrets."user/password".path;
       isNormalUser = true;
       description = config.var.user.description;
       extraGroups = ["networkmanager" "wheel"];
@@ -55,10 +45,9 @@
       useUserPackages = true;
       useGlobalPkgs = true;
     };
-    sops.secrets."user/password" = {};
   };
 
-  flake.modules.homeManager.minimal = {...}: {
-    home.stateVersion = "26.05";
+  flake.modules.homeManager.minimal = {osConfig, ...}: {
+    home.stateVersion = osConfig.system.stateVersion;
   };
 }

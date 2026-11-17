@@ -3,7 +3,7 @@
   #   nixpkgs.overlays = [inputs.nix4vscode.overlays.default];
   # };
 
-  flake.modules.homeManager.optional = {pkgs, ...}: let
+  flake.modules.homeManager.vscode = {pkgs, ...}: let
     package = "vscode";
     #autostartEntry = "code.desktop";
   in {

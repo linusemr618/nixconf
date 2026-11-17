@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  flake.modules.nixos.optional = {...}: {
+  flake.modules.nixos.extrapkgs = {...}: {
     # programs.appimage = {
     #   enable = true;
     #   binfmt = true;
@@ -11,7 +11,7 @@
     # };
     services.flatpak.enable = true;
   };
-  flake.modules.homeManager.optional = {pkgs, ...}: {
+  flake.modules.homeManager.extrapkgs = {pkgs, ...}: {
     home.packages = with pkgs; [
       (pkgs.callPackage "${inputs.nixpkgs-pr-claude-desktop}/pkgs/by-name/cl/claude-desktop/package.nix" {})
       deckcraft

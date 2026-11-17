@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.homeManager.optional = {...}: {
+  flake.modules.homeManager.element = {...}: {
     programs.element-desktop = {
       enable = true;
       settings = {

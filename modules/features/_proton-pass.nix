@@ -1,5 +1,5 @@
 {...}: {
-  flake.modules.homeManager.optional = {pkgs, ...}: {
+  flake.modules.homeManager.proton-pass = {pkgs, ...}: {
     home.packages = with pkgs; [
       proton-pass
       proton-pass-cli

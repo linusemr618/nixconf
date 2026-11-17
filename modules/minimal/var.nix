@@ -1,33 +1,24 @@
-let
-  myVar = {
+{...}: {
+  flake.modules.nixos.minimal = {
     config,
     lib,
     ...
   }: {
-    options = {
-      var = {
-        host.name = lib.mkOption {
+    options.var = {
+      user = {
+        name = lib.mkOption {
           type = lib.types.str;
+          default = "linus";
         };
-        user = {
-          name = lib.mkOption {
-            type = lib.types.str;
-            default = "linus";
-          };
-          description = lib.mkOption {
-            type = lib.types.str;
-            default = "Linus Emmerich";
-          };
-        };
-        flake.location = lib.mkOption {
+        description = lib.mkOption {
           type = lib.types.str;
-          default = "/home/${config.var.user.name}/nixconf";
+          default = "Linus Emmerich";
         };
+      };
+      flake.location = lib.mkOption {
+        type = lib.types.str;
+        default = "/home/${config.var.user.name}/nixconf";
       };
     };
   };
-in
-  {...}: {
-    flake.modules.nixos.minimal = myVar;
-    flake.modules.homeManager.minimal = myVar;
-  }
+}
