@@ -3,12 +3,11 @@
     services.tailscale = {
       enable = true;
       disableUpstreamLogging = true;
-      openFirewall = true;
       extraSetFlags = [
         "--accept-routes"
-        #"--exit-node-allow-lan-access"
         "--operator=${config.var.user.name}"
       ];
+      openFirewall = true;
       useRoutingFeatures = "client";
     };
   };

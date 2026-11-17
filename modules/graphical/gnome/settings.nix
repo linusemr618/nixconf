@@ -7,7 +7,7 @@
     dconf.settings = with lib.hm.gvariant; {
       "org/gnome/desktop/calendar".show-weekdate = true;
       #"org/gnome/desktop/datetime".automatic-timezone = true;
-      "org/gnome/desktop/input-sources".sources = [(mkTuple ["xkb" "de"]) (mkTuple ["xkb" "gb"])];
+      "org/gnome/desktop/input-sources".sources = [(mkTuple ["xkb" "de"])]; #(mkTuple ["xkb" "gb"])];
       "org/gnome/desktop/interface".gtk-enable-primary-paste = true;
       "org/gnome/desktop/notifications".show-in-lock-screen = false;
       "org/gnome/desktop/peripherals/mouse".speed = 0; # -0.75;

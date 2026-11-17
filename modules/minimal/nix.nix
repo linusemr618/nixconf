@@ -31,7 +31,7 @@
       clean = {
         enable = true;
         extraArgs = "--keep-since 2d --keep 10";
-        dates = "hourly";
+        dates = "daily";
       };
       flake = "${config.var.flake.location}";
     };
