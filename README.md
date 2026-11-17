@@ -7,7 +7,7 @@ My personal NixOS configuration
 ### Setup
 
 ```bash
-nix-shell -p git && git clone https://github.com/linusemr618/nixconf && exit
+nix-shell -p git --run "git clone https://github.com/linusemr618/nixconf"
 cd nixconf
 nix-shell
 ```
