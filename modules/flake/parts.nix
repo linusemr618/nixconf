@@ -10,7 +10,7 @@
       inherit system;
       config.allowUnfree = true;
     };
-    devShells.default = import ../shell.nix {inherit pkgs;};
+    devShells.default = import ../../shell.nix {inherit pkgs;};
     formatter = pkgs.alejandra;
   };
 }

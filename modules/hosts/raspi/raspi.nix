@@ -18,6 +18,7 @@
     boot.supportedFilesystems.zfs = lib.mkForce false;
     hardware.raspberry-pi.firmware.uboot.enable = true;
     nixpkgs.hostPlatform = "aarch64-linux";
+    system.stateVersion = "26.05";
   };
 
   perSystem = {...}: {

@@ -4,10 +4,7 @@
 
     nixpkgs = {
       config.allowUnfree = true;
-      overlays = [
-        inputs.nur.overlays.default
-        #(_: prev: {gnomeExtensions = prev.gnomeExtensions // {forge = inputs.myNixpkgs.legacyPackages.${prev.stdenv.hostPlatform.system}.gnomeExtensions.forge;};})
-      ];
+      overlays = [inputs.nur.overlays.default];
     };
     nix = {
       channel.enable = false;
