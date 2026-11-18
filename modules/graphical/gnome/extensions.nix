@@ -13,7 +13,6 @@
       "clipboard-indicator"
       #"dash-to-dock"
       #"forge"
-      "gsconnect"
       #"paperwm"
     ];
 
@@ -61,20 +60,10 @@
     };
   };
 
-  flake.modules.nixos.graphicalGnome = {...}: {
-    networking.firewall = {
-      allowedTCPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
-      ];
-      allowedUDPPortRanges = [
-        {
-          from = 1714;
-          to = 1764;
-        }
-      ];
+  flake.modules.nixos.graphicalGnome = {pkgs, ...}: {
+    programs.kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
     };
   };
 }

@@ -1,6 +1,7 @@
 {inputs, ...}: {
   hosts.laptop = [
     "minimal"
+    "secrets"
 
     "graphical"
     "graphicalGnome"
@@ -10,7 +11,6 @@
     "extrapkgs"
     "dev"
     "networks"
-    "secrets"
     "tailscale"
     "virtualisation"
   ];
