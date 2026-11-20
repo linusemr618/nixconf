@@ -5,7 +5,10 @@
     pkgs,
     ...
   }: {
-    boot.kernelPackages = lib.mkOverride 1400 pkgs.linuxPackages_latest;
+    boot = {
+      kernelPackages = lib.mkOverride 1400 pkgs.linuxPackages_latest;
+      tmp.cleanOnBoot = true;
+    };
     hardware.enableAllFirmware = true;
     services.fwupd.enable = true;
 

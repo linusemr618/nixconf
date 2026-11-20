@@ -24,6 +24,7 @@
     };
     import-tree.url = "github:denful/import-tree";
     #myNixpkgs.url = "path:/home/linus/git/nixpkgs";
+    #preservation.url = "github:nix-community/preservation";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";

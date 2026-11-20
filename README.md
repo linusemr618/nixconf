@@ -18,6 +18,22 @@ nix-shell
 sudo nixos-rebuild switch --flake .#laptop
 ```
 
+### Ephemeral root (laptop)
+
+`/` is replaced by an empty btrfs subvolume on every boot; the previous root is kept in
+`@old_roots/<timestamp>` for 30 days. Only paths declared in
+`modules/hosts/laptop/impermanence.nix` survive (stored on `/persist`). `/home` and `/nix` are untouched.
+Run `fs-diff` to see which files on `/` would be lost on the next reboot.
+
+Migrating an existing install (one-time):
+
+```bash
+./scripts/migrate-impermanence.sh   # creates @persist and copies the declared state into it
+sudo nixos-rebuild boot --flake .#laptop && reboot
+```
+
+On a fresh disko install, copy the SSH host key used by sops to `/mnt/persist/etc/ssh/` before rebooting.
+
 ### Build an ISO file
 
 ```bash
@@ -53,4 +69,4 @@ nix build .#iso
 - [x] disko
 - [x] fix vpns
 - [ ] backup solution (restic or proton rclone)
-- [ ] impermanence
+- [x] impermanence (btrfs root rollback + preservation)
