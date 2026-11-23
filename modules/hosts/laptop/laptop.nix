@@ -1,16 +1,18 @@
 {inputs, ...}: {
   hosts.laptop = [
-    "minimal"
-    "secrets"
+    "base"
+    "baseSecrets"
 
-    "graphical"
-    "graphicalGnome"
-    "graphicalGnomeSecrets"
+    "desktop"
+    "desktopGnome"
+    "desktopGnomeSecrets"
 
     "element"
     "extrapkgs"
     "dev"
     "networks"
+    #"ollama"
+    "proton-vpn"
     "tailscale"
     "virtualisation"
   ];

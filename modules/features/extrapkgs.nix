@@ -13,6 +13,7 @@
   # };
   flake.modules.homeManager.extrapkgs = {pkgs, ...}: {
     home.packages = with pkgs; [
+      claude-code
       (pkgs.callPackage "${inputs.nixpkgs-pr-claude-desktop}/pkgs/by-name/cl/claude-desktop/package.nix" {})
       deckcraft
       ffmpeg-full
@@ -23,7 +24,7 @@
       plex-desktop
       proton-drive-cli #(pkgs.callPackage "${inputs.nixpkgs-pr-proton-drive-cli}/pkgs/by-name/pr/proton-drive-cli/package.nix" {})
       spotify
-      wineWow64Packages.waylandFull
+      #wineWow64Packages.waylandFull
       winetricks
       wordcraft
     ];

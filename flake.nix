@@ -9,10 +9,10 @@
     #   url = "github:NixOS/nixpkgs?ref=pull/582801/head";
     #   flake = false;
     # };
-    # nixpkgs-pr-proton-vpn = {
-    #   url = "github:NixOS/nixpkgs?ref=pull/551532/head";
-    #   flake = false;
-    # };
+    nixpkgs-pr-proton-vpn = {
+      url = "github:NixOS/nixpkgs?ref=pull/589141/head";
+      flake = false;
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

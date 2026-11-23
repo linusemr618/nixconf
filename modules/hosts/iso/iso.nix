@@ -1,9 +1,9 @@
 {self, ...}: {
   hosts.iso = [
-    "minimal"
+    "base"
 
-    "graphical"
-    "graphicalGnome"
+    "desktop"
+    "desktopGnome"
   ];
 
   flake.modules.nixos.hostsIso = {

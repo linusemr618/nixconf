@@ -4,7 +4,9 @@
   ...
 }: {
   hosts.raspi = [
-    "minimal"
+    "base"
+
+    "server"
   ];
   flake.modules.nixos.hostsRaspi = {
     lib,
